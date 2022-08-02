@@ -30,6 +30,8 @@ public class ItemsMatcherTrigger : MonoBehaviour
 
     public UnityEvent ItemsMatch;
 
+    public Sequence Sequence => _sequence;
+
     private void OnTriggerEnter(Collider other)
     {
         if (ItemCheck(other) && _items.Count < 2 && _item.CanDrag)
@@ -69,15 +71,19 @@ public class ItemsMatcherTrigger : MonoBehaviour
             }
 
             _items.Clear();
-
         });
+    }
+
+    public void ClearTriggerItems()
+    {
+        _items.Clear();
     }
 
     private void MatchItems()
     {
         if (ItemsMatchCheck(_items))
         {
-            ItemsMatch.Invoke();
+            ItemsMatch?.Invoke();
         }
         else if (_items.Count > 1)
         {
