@@ -12,19 +12,11 @@ public class StartUpLevel : MonoBehaviour
 
     [SerializeField] private LevelPresetsConfig _levelPresetsConfig;
 
-    [SerializeField] private LevelCompletedView _levelCompletedView;
-
-    [SerializeField] private string _levelCompletedText;
-
-    [SerializeField] private string _timeIsUpText;
+    [SerializeField] private LevelMenuView _levelMenuView;
 
     [SerializeField] private CountdownTimer _timer;
 
     [SerializeField] private GameStartUp _game;
-
-    [SerializeField] private GameObject _restartButton;
-
-    [SerializeField] private GameObject _nextLevelButton;
 
     private LevelStatistic _levelStatistic;
 
@@ -106,21 +98,15 @@ public class StartUpLevel : MonoBehaviour
 
     private void OnTimeIsUp()
     {
-        _levelCompletedView.ShowElement(_timeIsUpText);
-
         _timer.StopTimer();
 
         _timer.enabled = false;
 
-        _restartButton.SetActive(true);
-
-        _nextLevelButton.SetActive(false);
+        _levelMenuView.TimeIsUp();
     }
 
     private void OnLevelCompleted()
     {
-        _levelCompletedView.ShowElement(_levelCompletedText);
-
         _matcherTrigger.Sequence.OnComplete(() =>
         {
             _spawner.DestroyItems();
@@ -134,12 +120,10 @@ public class StartUpLevel : MonoBehaviour
 
         _timer.enabled = false;
 
-        _nextLevelButton.SetActive(true);
-
-        _restartButton.SetActive(false);
-
         _game.GameStatisticModel.LevelUp();
 
         _game.GameStatisticIO.SaveData(_game.GameStatisticModel);
+
+        _levelMenuView.LevelCompleted();
     }
 }

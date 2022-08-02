@@ -1064,12 +1064,8 @@ MonoBehaviour:
   _levelPresetsConfig: {fileID: 11400000, guid: 04b43087483288c4aad34a4f18f7a3bd,
     type: 2}
   _levelCompletedView: {fileID: 842138892}
-  _levelCompletedText: Level completed!
-  _timeIsUpText: Time is up!
   _timer: {fileID: 894906007}
   _game: {fileID: 575527251}
-  _restartButton: {fileID: 1100328337}
-  _nextLevelButton: {fileID: 1699203948}
 --- !u!1 &699661051
 GameObject:
   m_ObjectHideFlags: 0
@@ -1575,8 +1571,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 152a41232b1145d408a66dc60c06675c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _duration: 1.5
+  _animationDuration: 1
   _messageText: {fileID: 1252603539}
+  _levelCompletedText: Level completed!
+  _timeIsUpText: Time is up!
+  _restartButton: {fileID: 1100328337}
+  _nextLevelButton: {fileID: 1699203948}
 --- !u!114 &842138893
 MonoBehaviour:
   m_ObjectHideFlags: 0
