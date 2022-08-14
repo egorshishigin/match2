@@ -18,9 +18,16 @@ public class LevelMenuView : MonoBehaviour
 
     [SerializeField] private GameObject _nextLevelButton;
 
+    [SerializeField] private Vector3 _startPosition;
+
+    private void Start()
+    {
+        _startPosition = transform.localPosition;
+    }
+
     public void LevelCompleted()
     {
-        ShowElement(_levelCompletedText);
+        ShowElement(_levelCompletedText, Vector3.zero);
 
         _nextLevelButton.SetActive(true);
 
@@ -29,27 +36,35 @@ public class LevelMenuView : MonoBehaviour
 
     public void TimeIsUp()
     {
-        ShowElement(_timeIsUpText);
+        ShowElement(_timeIsUpText, Vector3.zero);
 
         _nextLevelButton.SetActive(false);
 
         _restartButton.SetActive(true);
     }
 
-    private void ShowElement(string text)
+    public void HideElement()
     {
-        AnimateElement();
+        AnimateElement(_startPosition);
+    }
+
+    private void ShowElement(string text, Vector3 position)
+    {
+        AnimateElement(position);
 
         SetText(text);
     }
 
-    private void AnimateElement()
+    private void AnimateElement(Vector3 position)
     {
-        gameObject.SetActive(true);
-
         Sequence sequence = DOTween.Sequence();
 
-        sequence.Append(transform.DOLocalMove(Vector3.zero, _animationDuration));
+        sequence.Append(transform.DOLocalMove(position, _animationDuration));
+
+        sequence.OnComplete(() =>
+        {
+            sequence.Kill();
+        });
     }
 
     private void SetText(string text)

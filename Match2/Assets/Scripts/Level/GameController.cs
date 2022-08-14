@@ -2,7 +2,7 @@
 
 using UnityEngine;
 
-public class StartUpLevel : MonoBehaviour
+public class GameController : MonoBehaviour
 {
     [SerializeField] private ItemsMatcherTrigger _matcherTrigger;
 
@@ -12,19 +12,28 @@ public class StartUpLevel : MonoBehaviour
 
     [SerializeField] private LevelPresetsConfig _levelPresetsConfig;
 
+    [SerializeField] private AnimationCurve _difficultyFormLevel;
+
     [SerializeField] private LevelMenuView _levelMenuView;
 
     [SerializeField] private CountdownTimer _timer;
 
-    [SerializeField] private GameStartUp _game;
+    [SerializeField] private GameStatisticController _gameStatistic;
 
     private LevelStatistic _levelStatistic;
 
     private LevelPreset _levelPreset;
 
+    private void Awake()
+    {
+        Initialize();
+    }
+
     private void OnEnable()
     {
         _levelStatistic.LevelCompleted += OnLevelCompleted;
+
+        _levelStatistic.ScoreUp += OnScoreUp;
 
         _timer.TimeIsUp += OnTimeIsUp;
     }
@@ -33,20 +42,26 @@ public class StartUpLevel : MonoBehaviour
     {
         _levelStatistic.LevelCompleted -= OnLevelCompleted;
 
+        _levelStatistic.ScoreUp -= OnScoreUp;
+
         _timer.TimeIsUp -= OnTimeIsUp;
     }
 
     public void StartGame()
     {
-        SetUpLevelPreset();
+        _gameStatistic.GameStatistic.ResetLevelScore();
 
-        _spawner = new ItemsSpawner();
-
-        _levelStatistic = new LevelStatistic(_matcherTrigger);
+        NextLevel();
     }
 
     public void NextLevel()
     {
+        _gameStatistic.GameStatistic.ResetLevelScore();
+
+        _gameStatistic.UpdateLevelScore();
+
+        _spawner.DestroyItems();
+
         SetUpLevelPreset();
 
         SetUpLevel();
@@ -60,12 +75,20 @@ public class StartUpLevel : MonoBehaviour
 
         _spawner.ClearRandomItems();
 
+        _gameStatistic.GameStatistic.ResetLevelScore();
+
+        _gameStatistic.UpdateLevelScore();
+
         SetUpLevel();
     }
 
     public void OpenMainMenu()
     {
-        _game.UpdateStatistic();
+        _gameStatistic.UpdateGameScore();
+
+        _gameStatistic.UpdateLevelText();
+
+        _gameStatistic.GameStatistic.ResetLevelScore();
 
         _matcherTrigger.ClearTriggerItems();
 
@@ -74,13 +97,25 @@ public class StartUpLevel : MonoBehaviour
         _spawner.ClearRandomItems();
 
         _timer.StopTimer();
+    }
 
-        _timer.enabled = false;
+    private void Initialize()
+    {
+        _spawner = new ItemsSpawner();
+
+        _levelStatistic = new LevelStatistic(_matcherTrigger, _gameStatistic.GameStatistic);
+    }
+
+    private void OnScoreUp()
+    {
+        _gameStatistic.UpdateLevelScore();
     }
 
     private void SetUpLevelPreset()
     {
-        _levelPreset = _levelPresetsConfig.GetRandomLevelPreset();
+        float difficulty = _difficultyFormLevel.Evaluate(_gameStatistic.GameStatistic.Level);
+
+        _levelPreset = _levelPresetsConfig.GetRandomLevelPreset((int)difficulty);
     }
 
     private void SetUpLevel()
@@ -88,8 +123,6 @@ public class StartUpLevel : MonoBehaviour
         _spawner.SetLevelPreset(_itemsConfig, _levelPreset.ItemsCount, _levelPreset.SpawnOffsets);
 
         _levelStatistic.SetCountToWin(_levelPreset.ItemsCount);
-
-        _timer.enabled = true;
 
         _timer.StartTimer(_levelPreset.CountdownTime);
 
@@ -99,8 +132,6 @@ public class StartUpLevel : MonoBehaviour
     private void OnTimeIsUp()
     {
         _timer.StopTimer();
-
-        _timer.enabled = false;
 
         _levelMenuView.TimeIsUp();
     }
@@ -118,12 +149,12 @@ public class StartUpLevel : MonoBehaviour
 
         _timer.StopTimer();
 
-        _timer.enabled = false;
+        _gameStatistic.GameStatistic.LevelUp();
 
-        _game.GameStatisticModel.LevelUp();
-
-        _game.GameStatisticIO.SaveData(_game.GameStatisticModel);
+        _gameStatistic.GameStatistic.IncreaseGameScore();
 
         _levelMenuView.LevelCompleted();
+
+        _gameStatistic.GameStatisticIO.SaveData(_gameStatistic.GameStatistic);
     }
 }

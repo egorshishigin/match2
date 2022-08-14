@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class GameStatisticIO
 {
-    public void SaveData(GameStatisticModel gameStatistic)
+    public void SaveData(GameStatistic gameStatistic)
     {
         BinaryFormatter binaryFormatter = new BinaryFormatter();
 
@@ -19,7 +19,7 @@ public class GameStatisticIO
         fileStream.Dispose();
     }
 
-    public GameStatisticModel LoadData()
+    public GameStatistic LoadData()
     {
         try
         {
@@ -27,7 +27,7 @@ public class GameStatisticIO
 
             BinaryFormatter binaryFormatter = new BinaryFormatter();
 
-            GameStatisticModel gameStatistic = (GameStatisticModel)binaryFormatter.Deserialize(fileStream);
+            GameStatistic gameStatistic = (GameStatistic)binaryFormatter.Deserialize(fileStream);
 
             fileStream.Close();
 
@@ -37,7 +37,26 @@ public class GameStatisticIO
         }
         catch (Exception)
         {
-            throw new Exception("Can't load game data. File doesn't exist.");
+            GameStatistic gameStatistic = NewFile();
+
+            throw new Exception("Can't load game data. File doesn't exist. New file been created.");
         }
+    }
+
+    private GameStatistic NewFile()
+    {
+        BinaryFormatter binaryFormatter = new BinaryFormatter();
+
+        FileStream fileStream = File.Create(Application.persistentDataPath + "/GameData.dat");
+
+        GameStatistic gameStatistic = new GameStatistic();
+
+        binaryFormatter.Serialize(fileStream, gameStatistic);
+
+        fileStream.Close();
+
+        fileStream.Dispose();
+
+        return gameStatistic;
     }
 }

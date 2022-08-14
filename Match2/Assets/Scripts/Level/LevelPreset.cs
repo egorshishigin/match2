@@ -5,11 +5,15 @@ using UnityEngine;
 [Serializable]
 public class LevelPreset
 {
+    [SerializeField] private int _difficulty;
+
     [SerializeField] private int _itemsCount;
 
     [SerializeField] private Vector3 _spawnOffsets;
 
     [SerializeField] private float _levelTime;
+
+    public int Difficulty => _difficulty;
 
     public int ItemsCount => _itemsCount;
 
