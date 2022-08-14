@@ -22,6 +22,8 @@ public class ItemsMatcherTrigger : MonoBehaviour
 
     [SerializeField] private float _scaleShakeStrenght;
 
+    [SerializeField] private Vibrator _vibrator;
+
     private List<Item> _items = new List<Item>();
 
     private Item _item;
@@ -89,7 +91,9 @@ public class ItemsMatcherTrigger : MonoBehaviour
         {
             ThrowWrongItem(_item.Rigidbody);
 
-            ShakeWrongItem(_item.transform);
+            ShakeWrongItem(_items[0].transform);
+
+            _vibrator.Vibrate();
         }
     }
 
