@@ -1222,7 +1222,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   _levelMenuView: {fileID: 842138892}
   _timer: {fileID: 894906007}
-  _game: {fileID: 575527251}
+  _gameStatistic: {fileID: 575527251}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
