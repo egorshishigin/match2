@@ -13,6 +13,27 @@ MonoBehaviour:
   m_Name: LevelPresetsConfig
   m_EditorClassIdentifier: 
   _levelPresets:
-  - _itemsCount: 3
+  - _difficulty: 0
+    _itemsCount: 3
     _spawnOffsets: {x: 4.2, y: 2, z: 3.2}
     _levelTime: 15
+  - _difficulty: 1
+    _itemsCount: 5
+    _spawnOffsets: {x: 4.2, y: 2, z: 3.2}
+    _levelTime: 18
+  - _difficulty: 2
+    _itemsCount: 6
+    _spawnOffsets: {x: 4.2, y: 2, z: 3.2}
+    _levelTime: 20
+  - _difficulty: 2
+    _itemsCount: 7
+    _spawnOffsets: {x: 4.2, y: 2, z: 3.2}
+    _levelTime: 22
+  - _difficulty: 3
+    _itemsCount: 8
+    _spawnOffsets: {x: 4.2, y: 2, z: 3.2}
+    _levelTime: 25
+  - _difficulty: 3
+    _itemsCount: 10
+    _spawnOffsets: {x: 4.2, y: 2, z: 3.2}
+    _levelTime: 28
