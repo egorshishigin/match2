@@ -9,7 +9,14 @@ public class GameStatistic
 
     private int _gameScore;
 
-    public GameStatistic() { }
+    public GameStatistic()
+    {
+        _level = 0;
+
+        _score = 0;
+
+        _gameScore = 0;
+    }
 
     public int Level => _level;
 
@@ -27,9 +34,9 @@ public class GameStatistic
         _level++;
     }
 
-    public void ScoreUp(int amout)
+    public void ScoreUp(int ratio)
     {
-        _score += amout;
+        _score += 1 * ratio;
     }
 
     public void ResetLevelScore()

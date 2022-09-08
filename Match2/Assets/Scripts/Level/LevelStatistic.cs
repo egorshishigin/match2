@@ -1,7 +1,5 @@
 ﻿using System;
 
-using UnityEngine;
-
 public class LevelStatistic : IDisposable
 {
     private int _itemsCountToWin;
@@ -10,15 +8,11 @@ public class LevelStatistic : IDisposable
 
     private ItemsMatcherTrigger _matcherTrigger;
 
-    private GameStatistic _gameStatistic;
-
     public event Action ScoreUp = delegate { };
 
-    public LevelStatistic(ItemsMatcherTrigger matcherTrigger, GameStatistic gameStatistic)
+    public LevelStatistic(ItemsMatcherTrigger matcherTrigger)
     {
         _matcherTrigger = matcherTrigger;
-
-        _gameStatistic = gameStatistic;
 
         Initialize();
     }
@@ -44,8 +38,6 @@ public class LevelStatistic : IDisposable
 
     private void OnItemsMatch()
     {
-        _gameStatistic.ScoreUp(5);
-
         ScoreUp.Invoke();
 
         _currentMatchedItems++;

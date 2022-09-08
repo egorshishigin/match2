@@ -12,13 +12,15 @@ public class GameStatisticController : MonoBehaviour
 
     public GameStatisticIO GameStatisticIO => _statisticIO;
 
-    private void Awake()
+    private void Start()
     {
         Application.targetFrameRate = 60;
 
         _statisticIO = new GameStatisticIO();
 
         _gameStatistic = _statisticIO.LoadData();
+
+        Debug.Log(_gameStatistic);
 
         UpdateGameScore();
 

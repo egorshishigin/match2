@@ -20,6 +20,8 @@ public class GameController : MonoBehaviour
 
     [SerializeField] private GameStatisticController _gameStatistic;
 
+    [SerializeField] private ScoreBooster _scoreBooster;
+
     private LevelStatistic _levelStatistic;
 
     private LevelPreset _levelPreset;
@@ -103,11 +105,13 @@ public class GameController : MonoBehaviour
     {
         _spawner = new ItemsSpawner();
 
-        _levelStatistic = new LevelStatistic(_matcherTrigger, _gameStatistic.GameStatistic);
+        _levelStatistic = new LevelStatistic(_matcherTrigger);
     }
 
     private void OnScoreUp()
     {
+        _gameStatistic.GameStatistic.ScoreUp(_scoreBooster.ScoreBoostAmount);
+
         _gameStatistic.UpdateLevelScore();
     }
 

@@ -21,26 +21,19 @@ public class GameStatisticIO
 
     public GameStatistic LoadData()
     {
-        try
-        {
-            FileStream fileStream = File.Open(Application.persistentDataPath + "/GameData.dat", FileMode.Open);
+        GameStatistic gameStatistic;
 
-            BinaryFormatter binaryFormatter = new BinaryFormatter();
+        FileStream fileStream = File.Open(Application.persistentDataPath + "/GameData.dat", FileMode.OpenOrCreate);
 
-            GameStatistic gameStatistic = (GameStatistic)binaryFormatter.Deserialize(fileStream);
+        BinaryFormatter binaryFormatter = new BinaryFormatter();
 
-            fileStream.Close();
+        gameStatistic = (GameStatistic)binaryFormatter.Deserialize(fileStream);
 
-            fileStream.Dispose();
+        fileStream.Close();
 
-            return gameStatistic;
-        }
-        catch (Exception)
-        {
-            GameStatistic gameStatistic = NewFile();
+        fileStream.Dispose();
 
-            throw new Exception("Can't load game data. File doesn't exist. New file been created.");
-        }
+        return gameStatistic;
     }
 
     private GameStatistic NewFile()
