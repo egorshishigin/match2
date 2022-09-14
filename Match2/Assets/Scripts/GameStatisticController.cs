@@ -20,8 +20,6 @@ public class GameStatisticController : MonoBehaviour
 
         _gameStatistic = _statisticIO.LoadData();
 
-        Debug.Log(_gameStatistic);
-
         UpdateGameScore();
 
         UpdateLevelText();

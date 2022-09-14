@@ -64,6 +64,8 @@ public class GameController : MonoBehaviour
 
         _spawner.DestroyItems();
 
+        _scoreBooster.ResetBooster();
+
         SetUpLevelPreset();
 
         SetUpLevel();
@@ -72,6 +74,8 @@ public class GameController : MonoBehaviour
     public void RestartLevel()
     {
         _matcherTrigger.ClearTriggerItems();
+
+        _scoreBooster.ResetBooster();
 
         _spawner.DestroyItems();
 

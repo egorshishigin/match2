@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
 using UnityEngine;
@@ -25,26 +24,16 @@ public class GameStatisticIO
 
         FileStream fileStream = File.Open(Application.persistentDataPath + "/GameData.dat", FileMode.OpenOrCreate);
 
-        BinaryFormatter binaryFormatter = new BinaryFormatter();
+        if (fileStream.Length == 0)
+        {
+            gameStatistic = new GameStatistic();
+        }
+        else
+        {
+            BinaryFormatter binaryFormatter = new BinaryFormatter();
 
-        gameStatistic = (GameStatistic)binaryFormatter.Deserialize(fileStream);
-
-        fileStream.Close();
-
-        fileStream.Dispose();
-
-        return gameStatistic;
-    }
-
-    private GameStatistic NewFile()
-    {
-        BinaryFormatter binaryFormatter = new BinaryFormatter();
-
-        FileStream fileStream = File.Create(Application.persistentDataPath + "/GameData.dat");
-
-        GameStatistic gameStatistic = new GameStatistic();
-
-        binaryFormatter.Serialize(fileStream, gameStatistic);
+            gameStatistic = (GameStatistic)binaryFormatter.Deserialize(fileStream);
+        }
 
         fileStream.Close();
 

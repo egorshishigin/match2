@@ -26,14 +26,14 @@ MonoBehaviour:
     _spawnOffsets: {x: 4.2, y: 2, z: 3.2}
     _levelTime: 20
   - _difficulty: 2
-    _itemsCount: 7
+    _itemsCount: 10
     _spawnOffsets: {x: 4.2, y: 2, z: 3.2}
     _levelTime: 22
   - _difficulty: 3
-    _itemsCount: 8
+    _itemsCount: 15
     _spawnOffsets: {x: 4.2, y: 2, z: 3.2}
     _levelTime: 25
   - _difficulty: 3
-    _itemsCount: 10
+    _itemsCount: 15
     _spawnOffsets: {x: 4.2, y: 2, z: 3.2}
     _levelTime: 28

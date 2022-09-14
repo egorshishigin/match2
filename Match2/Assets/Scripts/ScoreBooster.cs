@@ -33,6 +33,19 @@ public class ScoreBooster : MonoBehaviour
         _matcherTrigger.ItemsMatch.RemoveListener(OnItemsMatch);
     }
 
+    public void ResetBooster()
+    {
+        StopAllCoroutines();
+
+        _countDownTime = 0;
+
+        _boostAmount = 0;
+
+        _boosterView.UpdateSliderValue(_countDownTime);
+
+        _boosterView.UpdateBoosterText(_boostAmount);
+    }
+
     private void OnItemsMatch()
     {
         StartCoroutine(BoosterTimer());
