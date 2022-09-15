@@ -20,6 +20,8 @@ public class ItemsSpawner
 
     public ItemsSpawner() { }
 
+    public List<GameObject> Items => _spawnedItems;
+
     public void SetLevelPreset(ItemsConfig itemsConfig, int count, Vector3 spawnOffsets)
     {
         _config = itemsConfig;

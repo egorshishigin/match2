@@ -17,7 +17,7 @@ public class ScoreBoosterView : MonoBehaviour
     {
         _boostText.text = $"{amount}x";
 
-        SetMaxParticles(amount);
+        SetMaxParticles(amount - 1);
     }
 
     public void UpdateSliderValue(float value)

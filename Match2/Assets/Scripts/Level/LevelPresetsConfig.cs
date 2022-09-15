@@ -7,29 +7,29 @@ public class LevelPresetsConfig : ScriptableObject
 {
     [SerializeField] private List<LevelPreset> _levelPresets = new List<LevelPreset>();
 
-    private List<LevelPreset> _presetsByDifficulty;
-
-    public LevelPreset GetRandomLevelPreset(int difficulty)
+    public LevelPreset GetRandomLevelPreset(List<LevelPreset> levelPresets)
     {
-        GetLevelPresetsByDifficulty(difficulty);
+        int randomPresetIndex = Random.Range(0, levelPresets.Count);
 
-        int randomPresetIndex = Random.Range(0, _presetsByDifficulty.Count);
+        LevelPreset levelPreset = levelPresets[randomPresetIndex];
 
-        LevelPreset levelPreset = _presetsByDifficulty[randomPresetIndex];
-
-        _presetsByDifficulty.Clear();
+        levelPresets.Clear();
 
         return levelPreset;
     }
 
-    private void GetLevelPresetsByDifficulty(int difficulty)
+    public List<LevelPreset> GetLevelPresetsByDifficulty(int difficulty)
     {
+        List<LevelPreset> presetsByDifficulty = new List<LevelPreset>();
+
         foreach (LevelPreset levelPreset in _levelPresets)
         {
             if (levelPreset.Difficulty == difficulty)
             {
-                _presetsByDifficulty.Add(levelPreset);
+                presetsByDifficulty.Add(levelPreset);
             }
         }
+
+        return presetsByDifficulty;
     }
 }

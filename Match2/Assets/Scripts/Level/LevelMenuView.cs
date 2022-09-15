@@ -14,6 +14,8 @@ public class LevelMenuView : MonoBehaviour
 
     [SerializeField] private string _timeIsUpText;
 
+    [SerializeField] private string _pauseText;
+
     [SerializeField] private GameObject _restartButton;
 
     [SerializeField] private GameObject _nextLevelButton;

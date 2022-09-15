@@ -39,7 +39,7 @@ public class ScoreBooster : MonoBehaviour
 
         _countDownTime = 0;
 
-        _boostAmount = 0;
+        _boostAmount = 1;
 
         _boosterView.UpdateSliderValue(_countDownTime);
 
