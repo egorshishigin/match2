@@ -4,60 +4,68 @@ using TMPro;
 
 using UnityEngine;
 
-public class CountdownTimer : MonoBehaviour
+namespace Timer
 {
-    [SerializeField] private TMP_Text _timerText;
-
-    private float _remaningTime;
-
-    private bool _timerRunning;
-
-    public event Action TimeIsUp = delegate { };
-
-    private void Update()
+    public class CountdownTimer : MonoBehaviour
     {
-        TimerTick();
-    }
+        [SerializeField] private TMP_Text _timerText;
 
-    public void StartTimer(float countdownTime)
-    {
-        _timerRunning = true;
+        private float _remaningTime;
 
-        _remaningTime = countdownTime;
-    }
+        private bool _timerRunning;
 
-    public void StopTimer()
-    {
-        _timerRunning = false;
-    }
+        public event Action TimeIsUp = delegate { };
 
-    private void TimerTick()
-    {
-        if (_timerRunning)
+        private void Update()
         {
-            if (_remaningTime > 0)
-            {
-                _remaningTime -= Time.deltaTime;
-            }
-            else
-            {
-                TimeIsUp.Invoke();
-
-                _remaningTime = 0;
-
-                _timerRunning = false;
-            }
-
-            DisplayTime(_remaningTime);
+            TimerTick();
         }
-    }
 
-    private void DisplayTime(float time)
-    {
-        float minutes = Mathf.FloorToInt(time / 60);
+        public void StartTimer(float countdownTime)
+        {
+            _timerRunning = true;
 
-        float seconds = Mathf.FloorToInt(time % 60);
+            _remaningTime = countdownTime;
+        }
 
-        _timerText.text = $"{minutes:00}:{seconds:00}";
+        public void StopTimer()
+        {
+            _timerRunning = false;
+        }
+
+        public void PlayTimer()
+        {
+            _timerRunning = true;
+        }
+
+        private void TimerTick()
+        {
+            if (_timerRunning)
+            {
+                if (_remaningTime > 1)
+                {
+                    _remaningTime -= Time.deltaTime;
+                }
+                else
+                {
+                    TimeIsUp.Invoke();
+
+                    _remaningTime = 0;
+
+                    _timerRunning = false;
+                }
+
+                DisplayTime(_remaningTime);
+            }
+        }
+
+        private void DisplayTime(float time)
+        {
+            float minutes = Mathf.FloorToInt(time / 60);
+
+            float seconds = Mathf.FloorToInt(time % 60);
+
+            _timerText.text = $"{minutes:00}:{seconds:00}";
+        }
     }
 }

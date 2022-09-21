@@ -2,34 +2,37 @@
 
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "LevelPresetsConfig", menuName = "ScriptableObjects/LevelPresetsConfig")]
-public class LevelPresetsConfig : ScriptableObject
+namespace Level.Config
 {
-    [SerializeField] private List<LevelPreset> _levelPresets = new List<LevelPreset>();
-
-    public LevelPreset GetRandomLevelPreset(List<LevelPreset> levelPresets)
+    [CreateAssetMenu(fileName = "LevelPresetsConfig", menuName = "ScriptableObjects/LevelPresetsConfig")]
+    public class LevelPresetsConfig : ScriptableObject
     {
-        int randomPresetIndex = Random.Range(0, levelPresets.Count);
+        [SerializeField] private List<LevelPreset> _levelPresets = new List<LevelPreset>();
 
-        LevelPreset levelPreset = levelPresets[randomPresetIndex];
-
-        levelPresets.Clear();
-
-        return levelPreset;
-    }
-
-    public List<LevelPreset> GetLevelPresetsByDifficulty(int difficulty)
-    {
-        List<LevelPreset> presetsByDifficulty = new List<LevelPreset>();
-
-        foreach (LevelPreset levelPreset in _levelPresets)
+        public LevelPreset GetRandomLevelPreset(List<LevelPreset> levelPresets)
         {
-            if (levelPreset.Difficulty == difficulty)
-            {
-                presetsByDifficulty.Add(levelPreset);
-            }
+            int randomPresetIndex = Random.Range(0, levelPresets.Count);
+
+            LevelPreset levelPreset = levelPresets[randomPresetIndex];
+
+            levelPresets.Clear();
+
+            return levelPreset;
         }
 
-        return presetsByDifficulty;
+        public List<LevelPreset> GetLevelPresetsByDifficulty(int difficulty)
+        {
+            List<LevelPreset> presetsByDifficulty = new List<LevelPreset>();
+
+            foreach (LevelPreset levelPreset in _levelPresets)
+            {
+                if (levelPreset.Difficulty == difficulty)
+                {
+                    presetsByDifficulty.Add(levelPreset);
+                }
+            }
+
+            return presetsByDifficulty;
+        }
     }
 }

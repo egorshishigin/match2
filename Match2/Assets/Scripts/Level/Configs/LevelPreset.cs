@@ -2,22 +2,25 @@
 
 using UnityEngine;
 
-[Serializable]
-public class LevelPreset
+namespace Level.Config
 {
-    [SerializeField] private int _difficulty;
+    [Serializable]
+    public class LevelPreset
+    {
+        [SerializeField] private int _difficulty;
 
-    [SerializeField] private int _itemsCount;
+        [SerializeField] private int _itemsCount;
 
-    [SerializeField] private Vector3 _spawnOffsets;
+        [SerializeField] private Vector3 _spawnOffsets;
 
-    [SerializeField] private float _levelTime;
+        [SerializeField] private float _levelTime;
 
-    public int Difficulty => _difficulty;
+        public int Difficulty => _difficulty;
 
-    public int ItemsCount => _itemsCount;
+        public int ItemsCount => _itemsCount;
 
-    public Vector3 SpawnOffsets => _spawnOffsets;
+        public Vector3 SpawnOffsets => _spawnOffsets;
 
-    public float CountdownTime => _levelTime;
+        public float CountdownTime => _levelTime;
+    }
 }
