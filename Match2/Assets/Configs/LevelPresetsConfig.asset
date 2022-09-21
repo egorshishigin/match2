@@ -20,20 +20,20 @@ MonoBehaviour:
   - _difficulty: 1
     _itemsCount: 5
     _spawnOffsets: {x: 3, y: 2, z: 3.2}
-    _levelTime: 18
+    _levelTime: 25
   - _difficulty: 2
     _itemsCount: 6
     _spawnOffsets: {x: 3, y: 2, z: 3.2}
-    _levelTime: 20
+    _levelTime: 25
   - _difficulty: 2
     _itemsCount: 10
     _spawnOffsets: {x: 3, y: 2, z: 3.2}
-    _levelTime: 22
+    _levelTime: 30
   - _difficulty: 3
     _itemsCount: 15
     _spawnOffsets: {x: 3, y: 2, z: 3.2}
-    _levelTime: 25
+    _levelTime: 42
   - _difficulty: 3
     _itemsCount: 15
     _spawnOffsets: {x: 3, y: 2, z: 3.2}
-    _levelTime: 28
+    _levelTime: 42
