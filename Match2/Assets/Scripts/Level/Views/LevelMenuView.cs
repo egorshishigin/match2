@@ -15,6 +15,8 @@ namespace Level.View
 
         [SerializeField] private TMP_Text _messageText;
 
+        [SerializeField] private TMP_Text _levelScore;
+
         [SerializeField] private string _levelCompletedText;
 
         [SerializeField] private string _timeIsUpText;
@@ -68,6 +70,8 @@ namespace Level.View
 
             _resumeButton.gameObject.SetActive(true);
 
+            _levelScore.gameObject.SetActive(false);
+
             PauseClicked.Invoke();
         }
 
@@ -80,6 +84,13 @@ namespace Level.View
             _restartButton.gameObject.SetActive(false);
 
             _resumeButton.gameObject.SetActive(false);
+
+            _levelScore.gameObject.SetActive(true);
+        }
+
+        public void ShowLevelScore(string levelScore)
+        {
+            _levelScore.text = levelScore;
         }
 
         public void TimeIsUp()
@@ -91,6 +102,8 @@ namespace Level.View
             _resumeButton.gameObject.SetActive(false);
 
             _restartButton.gameObject.SetActive(true);
+
+            _levelScore.gameObject.SetActive(false);
         }
 
         public void HideElement()

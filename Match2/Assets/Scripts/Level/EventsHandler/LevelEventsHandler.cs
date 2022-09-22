@@ -80,6 +80,8 @@ namespace Level.EventsHandler
 
             _gameStatistic.IncreaseGameScore();
 
+            _menuView.ShowLevelScore(_gameStatistic.LevelScore.ToString());
+
             _gameStatistic.ResetLevelScore();
 
             _menuView.LevelCompleted();
