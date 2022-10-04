@@ -27,8 +27,6 @@ namespace Items.Spawner
             _config = itemsConfig;
         }
 
-        public List<GameObject> Items => _spawnedItems;
-
         public void SpawnRandomItems(LevelPreset levelPreset)
         {
             _xSpawnOffset = levelPreset.SpawnOffsets.x;

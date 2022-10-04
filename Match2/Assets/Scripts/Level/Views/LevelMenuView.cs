@@ -85,6 +85,8 @@ namespace Level.View
 
             _resumeButton.gameObject.SetActive(false);
 
+            _pauseButton.gameObject.SetActive(false);
+
             _levelScore.gameObject.SetActive(true);
         }
 
@@ -102,6 +104,8 @@ namespace Level.View
             _resumeButton.gameObject.SetActive(false);
 
             _restartButton.gameObject.SetActive(true);
+
+            _pauseButton.gameObject.SetActive(false);
 
             _levelScore.gameObject.SetActive(false);
         }
