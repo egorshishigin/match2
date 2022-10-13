@@ -45,3 +45,11 @@ MonoBehaviour:
     _itemsCount: 25
     _spawnOffsets: {x: 2.6, y: 2, z: 3.2}
     _levelTime: 75
+  - _difficulty: 6
+    _itemsCount: 28
+    _spawnOffsets: {x: 2.6, y: 2, z: 3.2}
+    _levelTime: 80
+  - _difficulty: 6
+    _itemsCount: 32
+    _spawnOffsets: {x: 2.6, y: 2, z: 3.2}
+    _levelTime: 95

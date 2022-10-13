@@ -84,7 +84,7 @@ namespace Level.EventsHandler
 
             _gameStatistic.ResetLevelScore();
 
-            _menuView.LevelCompleted();
+            _menuView.LevelCompleted(_gameStatistic.Level);
         }
 
         private void OnScoreUp()

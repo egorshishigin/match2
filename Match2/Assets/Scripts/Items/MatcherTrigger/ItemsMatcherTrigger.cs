@@ -22,10 +22,6 @@ namespace Items.MatcherTrigger
 
         [SerializeField] private float _rotationDuration;
 
-        [SerializeField] private float _scaleShakeDuration;
-
-        [SerializeField] private float _scaleShakeStrenght;
-
         [SerializeField] private Vibrator _vibrator;
 
         private List<Item> _items = new List<Item>();
@@ -64,7 +60,7 @@ namespace Items.MatcherTrigger
 
             foreach (Item item in _items)
             {
-                _sequence.Join(item.transform.DOLocalRotate(new Vector3(0f, -360f, 0f), _rotationDuration, RotateMode.LocalAxisAdd));
+                _sequence.Join(item.transform.DORotate(new Vector3(0f, -360f, 0f), _rotationDuration, RotateMode.LocalAxisAdd));
             }
 
             _sequence.OnComplete(() =>
@@ -94,8 +90,6 @@ namespace Items.MatcherTrigger
             else if (_items.Count > 1)
             {
                 ThrowWrongItem(_item.Rigidbody);
-
-                ShakeWrongItem(_items[0].transform);
 
                 _vibrator.Vibrate();
             }
@@ -145,13 +139,6 @@ namespace Items.MatcherTrigger
             rigidbody.constraints = RigidbodyConstraints.None;
 
             rigidbody.AddForce(Vector3.up + Vector3.forward * _throwForce, _forceMode);
-        }
-
-        private void ShakeWrongItem(Transform item)
-        {
-            Sequence sequence = DOTween.Sequence();
-
-            sequence.Append(item.DOShakeScale(_scaleShakeDuration, _scaleShakeStrenght));
         }
     }
 }

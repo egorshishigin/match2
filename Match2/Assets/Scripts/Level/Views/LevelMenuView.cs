@@ -17,8 +17,6 @@ namespace Level.View
 
         [SerializeField] private TMP_Text _levelScore;
 
-        [SerializeField] private string _levelCompletedText;
-
         [SerializeField] private string _timeIsUpText;
 
         [SerializeField] private string _pauseText;
@@ -75,9 +73,9 @@ namespace Level.View
             PauseClicked.Invoke();
         }
 
-        public void LevelCompleted()
+        public void LevelCompleted(int level)
         {
-            ShowElement(_levelCompletedText, Vector3.zero);
+            ShowElement($"Level {level} completed", Vector3.zero);
 
             _nextLevelButton.gameObject.SetActive(true);
 
