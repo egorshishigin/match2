@@ -50,5 +50,10 @@ namespace GameStatistic
         {
             _gameScore += _score;
         }
+
+        public void SpendScore(int amount)
+        {
+            _gameScore -= amount;
+        }
     }
 }

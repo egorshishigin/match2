@@ -38,6 +38,14 @@ namespace Timer
             _timerRunning = true;
         }
 
+        public void GiveExtraTime(float amount)
+        {
+            if (_timerRunning && _remaningTime > 1)
+            {
+                _remaningTime += amount;
+            }
+        }
+
         private void TimerTick()
         {
             if (_timerRunning)

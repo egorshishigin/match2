@@ -1,5 +1,7 @@
 ﻿using System;
 
+using Helpers.Shop.Model;
+
 using GameStatistic.IO;
 using GameStatistic.View;
 
@@ -17,7 +19,9 @@ namespace GameStatistic.Controller
 
         private LevelModel _level;
 
-        public GameStatisticController(GameStatisticView statisticView, GameStatisticData gameStatistic, LevelModel level, GameStatisticIO gameStatisticIO)
+        private ShopModel _shopModel;
+
+        public GameStatisticController(GameStatisticView statisticView, GameStatisticData gameStatistic, LevelModel level, GameStatisticIO gameStatisticIO, ShopModel shopModel)
         {
             _statisticView = statisticView;
 
@@ -26,6 +30,8 @@ namespace GameStatistic.Controller
             _statisticIO = gameStatisticIO;
 
             _level = level;
+
+            _shopModel = shopModel;
 
             Initialize();
         }
@@ -38,6 +44,8 @@ namespace GameStatistic.Controller
 
             _level.LevelStarted -= OnLevelStarted;
 
+            _shopModel.ScoreSpent -= OnScoreSpent;
+
             _statisticView.HomeButton.onClick.RemoveListener(OnHomeButtonClick);
         }
 
@@ -49,11 +57,20 @@ namespace GameStatistic.Controller
 
             _level.LevelStarted += OnLevelStarted;
 
+            _shopModel.ScoreSpent += OnScoreSpent;
+
             _statisticView.HomeButton.onClick.AddListener(OnHomeButtonClick);
 
             UpdateGameScore();
 
             UpdateLevelText();
+        }
+
+        private void OnScoreSpent()
+        {
+            _statisticIO.SaveData(_gameStatistic);
+
+            UpdateGameScore();
         }
 
         private void UpdateLevelScore()

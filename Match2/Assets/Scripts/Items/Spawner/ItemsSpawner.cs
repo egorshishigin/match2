@@ -20,12 +20,14 @@ namespace Items.Spawner
 
         private List<Item> _randomItems = new List<Item>();
 
-        private List<GameObject> _spawnedItems = new List<GameObject>();
+        private List<GameObject> _spawnedItemsObjects = new List<GameObject>();
 
         public ItemsSpawner(ItemsConfig itemsConfig)
         {
             _config = itemsConfig;
         }
+
+        public List<GameObject> SpawnedItems => _spawnedItemsObjects;
 
         public void SpawnRandomItems(LevelPreset levelPreset)
         {
@@ -56,17 +58,17 @@ namespace Items.Spawner
 
                     GameObject spawnedObject = Object.Instantiate(_randomItems[j].gameObject, spawnPosition, Quaternion.identity);
 
-                    _spawnedItems.Add(spawnedObject);
+                    _spawnedItemsObjects.Add(spawnedObject);
                 }
             }
         }
 
         public void DestroyItems()
         {
-            if (_spawnedItems == null)
+            if (_spawnedItemsObjects == null)
                 return;
 
-            foreach (GameObject spawnedItem in _spawnedItems)
+            foreach (GameObject spawnedItem in _spawnedItemsObjects)
             {
                 Object.Destroy(spawnedItem);
             }
