@@ -2,6 +2,8 @@
 
 using TMPro;
 
+using DG.Tweening;
+
 using UnityEngine;
 
 namespace Timer
@@ -9,6 +11,10 @@ namespace Timer
     public class CountdownTimer : MonoBehaviour
     {
         [SerializeField] private TMP_Text _timerText;
+
+        [SerializeField] private TMP_Text _extraTimeText;
+
+        [SerializeField] private float _textFadeDuration;
 
         private float _remaningTime;
 
@@ -43,6 +49,8 @@ namespace Timer
             if (_timerRunning && _remaningTime > 1)
             {
                 _remaningTime += amount;
+
+                AnimateExtraTimeText(amount);
             }
         }
 
@@ -74,6 +82,26 @@ namespace Timer
             float seconds = Mathf.FloorToInt(time % 60);
 
             _timerText.text = $"{minutes:00}:{seconds:00}";
+        }
+
+        private void AnimateExtraTimeText(float amount)
+        {
+            _extraTimeText.gameObject.SetActive(true);
+
+            _extraTimeText.text = $"+ {amount} s";
+
+            Sequence textFade = DOTween.Sequence();
+
+            textFade.Append(_extraTimeText.DOFade(0, _textFadeDuration));
+
+            textFade.OnComplete(() =>
+            {
+                textFade.Kill();
+
+                _extraTimeText.DOFade(1, 0);
+
+                _extraTimeText.gameObject.SetActive(false);
+            });
         }
     }
 }

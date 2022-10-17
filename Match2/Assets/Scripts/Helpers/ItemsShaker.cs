@@ -31,13 +31,9 @@ namespace Helpers
             {
                 if (collider.TryGetComponent<Rigidbody>(out Rigidbody rigidbody))
                 {
-                    Vector3 direction = (collider.transform.position - _forcePoint.position).normalized;
-
-                    rigidbody.AddForce(direction * _force, ForceMode.Impulse);
+                    rigidbody.AddForce(rigidbody.transform.up * _force, ForceMode.Impulse);
                 }
             }
-
-            Debug.Log("Items shaker used");
         }
     }
 }
