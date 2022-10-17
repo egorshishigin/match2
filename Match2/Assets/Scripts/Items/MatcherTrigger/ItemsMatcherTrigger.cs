@@ -22,8 +22,6 @@ namespace Items.MatcherTrigger
 
         [SerializeField] private float _rotationDuration;
 
-        [SerializeField] private Vibrator _vibrator;
-
         private List<Item> _items = new List<Item>();
 
         private Item _item;
@@ -90,8 +88,6 @@ namespace Items.MatcherTrigger
             else if (_items.Count > 1)
             {
                 ThrowWrongItem(_item.Rigidbody);
-
-                _vibrator.Vibrate();
             }
         }
 
