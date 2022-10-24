@@ -86,21 +86,17 @@ namespace Timer
 
         private void AnimateExtraTimeText(float amount)
         {
-            _extraTimeText.gameObject.SetActive(true);
-
             _extraTimeText.text = $"+ {amount} s";
 
             Sequence textFade = DOTween.Sequence();
 
-            textFade.Append(_extraTimeText.DOFade(0, _textFadeDuration));
+            textFade.Append(_extraTimeText.DOFade(1, _textFadeDuration));
 
             textFade.OnComplete(() =>
             {
                 textFade.Kill();
 
-                _extraTimeText.DOFade(1, 0);
-
-                _extraTimeText.gameObject.SetActive(false);
+                _extraTimeText.DOFade(0, 0);
             });
         }
     }
