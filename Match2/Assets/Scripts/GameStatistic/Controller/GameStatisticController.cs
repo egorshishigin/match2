@@ -2,7 +2,6 @@
 
 using Helpers.Shop.Model;
 
-using GameStatistic.IO;
 using GameStatistic.View;
 
 using Level.Model;
@@ -13,21 +12,17 @@ namespace GameStatistic.Controller
     {
         private GameStatisticView _statisticView;
 
-        private GameStatisticData _gameStatistic;
-
-        private GameStatisticIO _statisticIO;
+        private GameData _gameData;
 
         private LevelModel _level;
 
         private ShopModel _shopModel;
 
-        public GameStatisticController(GameStatisticView statisticView, GameStatisticData gameStatistic, LevelModel level, GameStatisticIO gameStatisticIO, ShopModel shopModel)
+        public GameStatisticController(GameStatisticView statisticView, GameData gameData, LevelModel level, ShopModel shopModel)
         {
             _statisticView = statisticView;
 
-            _gameStatistic = gameStatistic;
-
-            _statisticIO = gameStatisticIO;
+            _gameData = gameData;
 
             _level = level;
 
@@ -68,24 +63,24 @@ namespace GameStatistic.Controller
 
         private void OnScoreSpent()
         {
-            _statisticIO.SaveData(_gameStatistic);
+            Game.Instance.SaveData();
 
             UpdateGameScore();
         }
 
         private void UpdateLevelScore()
         {
-            _statisticView.UpdateScoreText(_gameStatistic.LevelScore.ToString());
+            _statisticView.UpdateScoreText(_gameData.LevelScore.ToString());
         }
 
         private void UpdateLevelText()
         {
-            _statisticView.UpdateLevelText(_gameStatistic.GetLevelText());
+            _statisticView.UpdateLevelText(_gameData.GetLevelText());
         }
 
         private void UpdateGameScore()
         {
-            _statisticView.UpdateScoreText(_gameStatistic.GameScore.ToString());
+            _statisticView.UpdateScoreText(_gameData.GameScore.ToString());
         }
 
         private void OnLevelStarted()
@@ -100,7 +95,7 @@ namespace GameStatistic.Controller
 
         private void OnLevelCompleted()
         {
-            _statisticIO.SaveData(_gameStatistic);
+            Game.Instance.SaveData();
         }
 
         private void OnHomeButtonClick()

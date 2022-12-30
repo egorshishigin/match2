@@ -4,11 +4,13 @@ using TMPro;
 
 using DG.Tweening;
 
+using Pause;
+
 using UnityEngine;
 
 namespace Timer
 {
-    public class CountdownTimer : MonoBehaviour
+    public class CountdownTimer : MonoBehaviour, IPuaseHandler
     {
         [SerializeField] private TMP_Text _timerText;
 
@@ -22,9 +24,19 @@ namespace Timer
 
         public event Action TimeIsUp = delegate { };
 
+        private void Awake()
+        {
+            Game.Instance.PauseManager.Register(this);
+        }
+
         private void Update()
         {
             TimerTick();
+        }
+
+        public void SetPause(bool paused)
+        {
+            Time.timeScale = paused ? 0f : 1f;
         }
 
         public void StartTimer(float countdownTime)

@@ -31,6 +31,7 @@ Transform:
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
   m_LocalPosition: {x: -1.9935715, y: 1.181, z: -0.845}
   m_LocalScale: {x: 72.878, y: 72.878, z: 72.878}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -54,19 +55,21 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -2579286294170396733, guid: 54bca292e157cef4dad1a33d4f6a7a71, type: 3}
-  - {fileID: -8848810374240701247, guid: 54bca292e157cef4dad1a33d4f6a7a71, type: 3}
-  - {fileID: -7720851650173870308, guid: 54bca292e157cef4dad1a33d4f6a7a71, type: 3}
-  - {fileID: -4770390735465466038, guid: 54bca292e157cef4dad1a33d4f6a7a71, type: 3}
-  - {fileID: -382652638819485698, guid: 54bca292e157cef4dad1a33d4f6a7a71, type: 3}
-  - {fileID: -5562465603576036259, guid: 54bca292e157cef4dad1a33d4f6a7a71, type: 3}
+  - {fileID: 2100000, guid: b1c0a0cb1d219b64fa3abb42f1e72092, type: 2}
+  - {fileID: 2100000, guid: c262163f3f7ac3744b71d42cda46e081, type: 2}
+  - {fileID: 2100000, guid: 8c87b214caf24c545a70f55d499451e5, type: 2}
+  - {fileID: 2100000, guid: 842513c4db40454458898ff99a1c6d6c, type: 2}
+  - {fileID: 2100000, guid: 57714ce33bc1b5746b6d9466987dd89b, type: 2}
+  - {fileID: 2100000, guid: f2079ee01e483ff41b705cbe09137c1f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -87,6 +90,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!65 &3046480992502418210
 BoxCollider:
   m_ObjectHideFlags: 0

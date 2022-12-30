@@ -1,15 +1,12 @@
 ﻿using System;
 
 using Helpers.Shop.Model;
-using Helpers.Inventory;
 
 namespace Helpers
 {
     public abstract class HelperBase : IDisposable
     {
-        private InventoryData _inventoryData;
-
-        private InventoryDataIO _inventoryDataIO;
+        private GameData _gameData;
 
         private HelperView _helperView;
 
@@ -22,11 +19,9 @@ namespace Helpers
             _shopModel.ScoreSpent -= OnScoreSpent;
         }
 
-        protected HelperBase(InventoryData inventoryData, InventoryDataIO inventoryDataIO, HelperView helperView, ShopModel shopModel)
+        protected HelperBase(GameData gameData, HelperView helperView, ShopModel shopModel)
         {
-            _inventoryData = inventoryData;
-
-            _inventoryDataIO = inventoryDataIO;
+            _gameData = gameData;
 
             _helperView = helperView;
 
@@ -37,17 +32,17 @@ namespace Helpers
 
         protected abstract void UseHelper();
 
-        private void UpdateData(string name)
+        private void UpdateData(int id)
         {
-            if (_inventoryData.Helpers[name] > 0)
+            if (_gameData.Helpers[id] > 0)
             {
-                _inventoryData.ChangeHelperCount(name, -1);
+                _gameData.ChangeHelperCount(id, -1);
 
-                _inventoryDataIO.SaveData(_inventoryData);
+                Game.Instance.SaveData();
 
                 UseHelper();
 
-                _helperView.UpdateCountText(_inventoryData.GetHelperCount(name));
+                _helperView.UpdateCountText(_gameData.GetHelperCount(id));
             }
             else return;
         }
@@ -63,7 +58,7 @@ namespace Helpers
 
         private void UpdateHelperCount()
         {
-            _helperView.UpdateCountText(_inventoryData.GetHelperCount(_helperView.Name));
+            _helperView.UpdateCountText(_gameData.GetHelperCount(_helperView.ID));
         }
 
         private void OnScoreSpent()

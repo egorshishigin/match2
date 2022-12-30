@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 
 using Helpers.Shop.Model;
-using Helpers.Inventory;
 
 namespace Helpers
 {
@@ -13,8 +12,8 @@ namespace Helpers
 
         private float _forceRadius;
 
-        public ItemsShaker(InventoryData inventoryData, InventoryDataIO inventoryDataIO, HelperView helperView, ShopModel shopModel, float force, Transform forcePosition, float forceRadius)
-            : base(inventoryData, inventoryDataIO, helperView, shopModel)
+        public ItemsShaker(GameData gameData, HelperView helperView, ShopModel shopModel, float force, Transform forcePosition, float forceRadius)
+            : base(gameData, helperView, shopModel)
         {
             _force = force;
 

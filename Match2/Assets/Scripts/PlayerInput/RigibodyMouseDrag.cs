@@ -1,11 +1,12 @@
-﻿using DG.Tweening;
-using Items.Config;
+﻿using Items.Config;
+
+using Pause;
 
 using UnityEngine;
 
 namespace PlayerInput
 {
-    public class RigibodyMouseDrag : MonoBehaviour
+    public class RigibodyMouseDrag : MonoBehaviour, IPuaseHandler
     {
         [SerializeField] private float _forceAmount = 500;
 
@@ -22,6 +23,11 @@ namespace PlayerInput
         private float _selectionDistance;
 
         private Item _selectedItem;
+
+        private void Awake()
+        {
+            Game.Instance.PauseManager.Register(this);
+        }
 
         private void Start()
         {
@@ -57,6 +63,14 @@ namespace PlayerInput
             {
                 DragItem();
             }
+        }
+
+        public void SetPause(bool paused)
+        {
+            if (this == null)
+                return;
+
+            enabled = paused ? false : true;
         }
 
         private void DragItem()

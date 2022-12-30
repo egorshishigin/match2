@@ -54,8 +54,6 @@ namespace Level.Controller
 
         private void OnPauseClicked()
         {
-            _playerControl.enabled = false;
-
             _level.PauseGame();
         }
 

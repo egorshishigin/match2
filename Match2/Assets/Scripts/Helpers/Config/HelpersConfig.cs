@@ -12,9 +12,9 @@ namespace Helpers.Config
 
         public List<HelperData> Helpers => _helperDatas;
 
-        public HelperData GetHelperByName(string name)
+        public HelperData GetHelperByID(int id)
         {
-            HelperData helperData = _helperDatas.FirstOrDefault(n => n.Name == name);
+            HelperData helperData = _helperDatas.FirstOrDefault(n => n.ID == id);
 
             return helperData;
         }

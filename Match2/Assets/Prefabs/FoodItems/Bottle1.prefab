@@ -31,6 +31,7 @@ Transform:
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
   m_LocalPosition: {x: -1.5554941, y: 0.5, z: -1.0117403}
   m_LocalScale: {x: 100, y: 100, z: 100}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -54,16 +55,18 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -8753481769234136891, guid: 1f5a08b79322537489a0937d29905af9, type: 3}
-  - {fileID: -1827007756260414426, guid: 1f5a08b79322537489a0937d29905af9, type: 3}
-  - {fileID: 3765266259533036548, guid: 1f5a08b79322537489a0937d29905af9, type: 3}
+  - {fileID: 2100000, guid: dc88e5d5cc5380e45b03499f31fa8940, type: 2}
+  - {fileID: 2100000, guid: 2eb116d9fb4fc7840abecdc769d4367a, type: 2}
+  - {fileID: 2100000, guid: 5807bbf77dde22141b0a0ab72ebf61f1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -84,6 +87,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!65 &7351141820272199118
 BoxCollider:
   m_ObjectHideFlags: 0

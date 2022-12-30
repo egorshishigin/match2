@@ -1,6 +1,5 @@
 ﻿using Timer;
 
-using Helpers.Inventory;
 using Helpers.Shop.Model;
 
 namespace Helpers
@@ -11,8 +10,8 @@ namespace Helpers
 
         private float _timeAmount;
 
-        public ExtraTimeHelper(InventoryData inventoryData, InventoryDataIO inventoryDataIO, HelperView helperView, ShopModel shopModel, CountdownTimer timer, float timeAmount)
-            : base(inventoryData, inventoryDataIO, helperView, shopModel)
+        public ExtraTimeHelper(GameData gameData, HelperView helperView, ShopModel shopModel, CountdownTimer timer, float timeAmount)
+            : base(gameData, helperView, shopModel)
         {
             _timer = timer;
 

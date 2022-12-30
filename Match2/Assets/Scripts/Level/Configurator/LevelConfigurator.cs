@@ -14,22 +14,22 @@ namespace Level.Configurator
 
         private LevelPreset _levelPreset;
 
-        private GameStatisticData _gameStatistic;
+        private GameData _gameData;
 
         private AnimationCurve _difficultyFormLevel;
 
-        public LevelConfigurator(LevelPresetsConfig levelPresetsConfig, GameStatisticData gameStatistic, AnimationCurve difficultyFormLevel)
+        public LevelConfigurator(LevelPresetsConfig levelPresetsConfig, GameData gameData, AnimationCurve difficultyFormLevel)
         {
             _levelPresetsConfig = levelPresetsConfig;
 
-            _gameStatistic = gameStatistic;
+            _gameData = gameData;
 
             _difficultyFormLevel = difficultyFormLevel;
         }
 
         public LevelPreset SetUpLevelPreset()
         {
-            float difficulty = _difficultyFormLevel.Evaluate(_gameStatistic.Level);
+            float difficulty = _difficultyFormLevel.Evaluate(_gameData.Level);
 
             List<LevelPreset> levelPresets = _levelPresetsConfig.GetLevelPresetsByDifficulty((int)difficulty);
 

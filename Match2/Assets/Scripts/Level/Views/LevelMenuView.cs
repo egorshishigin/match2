@@ -122,13 +122,13 @@ namespace Level.View
 
         private void AnimateElement(Vector3 position)
         {
-            Sequence sequence = DOTween.Sequence();
+            Tween tween = transform.DOLocalMove(position, _animationDuration).SetUpdate(true);
 
-            sequence.Append(transform.DOLocalMove(position, _animationDuration));
-
-            sequence.OnComplete(() =>
+            tween.OnComplete(() =>
             {
-                sequence.Kill();
+                tween.Kill();
+                
+                Debug.Log("paused");
             });
         }
 

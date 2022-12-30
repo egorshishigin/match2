@@ -15,7 +15,7 @@ namespace Level.EventsHandler
     {
         private LevelModel _level;
 
-        private GameStatisticData _gameStatistic;
+        private GameData _gameData;
 
         private ScoreBooster _scoreBooster;
 
@@ -23,11 +23,11 @@ namespace Level.EventsHandler
 
         private RigibodyMouseDrag _playerControl;
 
-        public LevelEventsHandler(LevelModel level, GameStatisticData gameStatistic, ScoreBooster scoreBooster, LevelMenuView menuView, RigibodyMouseDrag playerControl)
+        public LevelEventsHandler(LevelModel level, GameData gameData, ScoreBooster scoreBooster, LevelMenuView menuView, RigibodyMouseDrag playerControl)
         {
             _level = level;
 
-            _gameStatistic = gameStatistic;
+            _gameData = gameData;
 
             _scoreBooster = scoreBooster;
 
@@ -69,27 +69,29 @@ namespace Level.EventsHandler
 
         private void OnLevelStarted()
         {
-            _gameStatistic.ResetLevelScore();
+            _gameData.ResetLevelScore();
 
             _scoreBooster.ResetBooster();
         }
 
         private void OnLevelCompleted()
         {
-            _gameStatistic.LevelUp();
+            _gameData.LevelUp();
 
-            _gameStatistic.IncreaseGameScore();
+            _gameData.IncreaseGameScore();
 
-            _menuView.ShowLevelScore(_gameStatistic.LevelScore.ToString());
+            _menuView.ShowLevelScore(_gameData.LevelScore.ToString());
 
-            _gameStatistic.ResetLevelScore();
+            _gameData.ResetLevelScore();
 
-            _menuView.LevelCompleted(_gameStatistic.Level);
+            _menuView.LevelCompleted(_gameData.Level);
+
+            Game.Instance.SaveData();
         }
 
         private void OnScoreUp()
         {
-            _gameStatistic.ScoreUp(_scoreBooster.ScoreBoostAmount);
+            _gameData.ScoreUp(_scoreBooster.ScoreBoostAmount);
         }
     }
 }

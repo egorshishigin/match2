@@ -9,15 +9,15 @@ namespace Helpers
 {
     public class HelperView : MonoBehaviour
     {
-        [SerializeField] private string _name;
+        [SerializeField] private int _id;
 
         [SerializeField] TMP_Text _count;
 
         [SerializeField] private Button _helperButton;
 
-        public string Name => _name;
+        public int ID => _id;
 
-        public event Action<string> ButtonClicked = delegate { };
+        public event Action<int> ButtonClicked = delegate { };
 
         private void OnEnable()
         {
@@ -36,7 +36,7 @@ namespace Helpers
 
         private void ButtonClick()
         {
-            ButtonClicked.Invoke(_name);
+            ButtonClicked.Invoke(_id);
         }
     }
 }

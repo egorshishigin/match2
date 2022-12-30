@@ -19,27 +19,33 @@ namespace Helpers.Shop.View
 
         [SerializeField] private Button _itemButton;
 
-        public string Name => _name.text;
+        private int _id;
 
-        public event Action<string> ButtonClicked = delegate { };
+        public int ID => _id;
 
-        private void OnEnable()
-        {
-            _itemButton.onClick.AddListener(ButtonClick);
-        }
+        public event Action<int> ButtonClicked = delegate { };
+
+        //private void OnEnable()
+        //{
+        //    _itemButton.onClick.AddListener(ButtonClick);
+        //}
 
         private void OnDisable()
         {
             _itemButton.onClick.RemoveListener(ButtonClick);
         }
 
-        public void Initialize(string name, int price, Sprite icon)
+        public void Initialize(int id, string name, int price, Sprite icon)
         {
+            _id = id;
+
             _name.text = name;
 
             _price.text = price.ToString();
 
             _icon.sprite = icon;
+
+            _itemButton.onClick.AddListener(ButtonClick);
         }
 
         public void UpdateCountText(int count)
@@ -49,7 +55,9 @@ namespace Helpers.Shop.View
 
         private void ButtonClick()
         {
-            ButtonClicked.Invoke(_name.text);
+            ButtonClicked.Invoke(_id);
+
+            Debug.Log(_id);
         }
     }
 }

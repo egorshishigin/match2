@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using Helpers.Config;
 using Helpers.Shop.View;
 using Helpers.Shop.Model;
-using Helpers.Inventory;
 
 using UnityEngine;
 using UnityEngine.UI;
@@ -24,13 +23,11 @@ namespace Helpers.Shop.Controller
 
         private ShopModel _shopModel;
 
-        private InventoryData _inventoryData;
-
-        private InventoryDataIO _dataIO;
+        private GameData _gameData;
 
         private List<ShopItemView> _itemViews = new List<ShopItemView>();
 
-        public ShopController(HelpersConfig config, ShopItemView itemViewTemplate, Button openShopButton, Transform itemsHolder, ShopModel shopModel, InventoryData inventoryData, InventoryDataIO dataIO)
+        public ShopController(HelpersConfig config, ShopItemView itemViewTemplate, Button openShopButton, Transform itemsHolder, ShopModel shopModel, GameData gameData)
         {
             _config = config;
 
@@ -42,9 +39,7 @@ namespace Helpers.Shop.Controller
 
             _shopModel = shopModel;
 
-            _inventoryData = inventoryData;
-
-            _dataIO = dataIO;
+            _gameData = gameData;
 
             InitializeViews();
         }
@@ -61,7 +56,7 @@ namespace Helpers.Shop.Controller
         {
             foreach (ShopItemView itemView in _itemViews)
             {
-                UpdateView(itemView.Name);
+                UpdateView(itemView.ID);
             }
         }
 
@@ -71,30 +66,30 @@ namespace Helpers.Shop.Controller
             {
                 ShopItemView view = GameObject.Instantiate(_itemViewTemplate, _itemsHolder);
 
-                view.Initialize(helperData.Name, helperData.Price, helperData.Icon);
+                view.Initialize(helperData.ID, helperData.Name, helperData.Price, helperData.Icon);
 
                 view.ButtonClicked += OnItemButtonClicked;
 
                 _itemViews.Add(view);
             }
 
-            _openShopButton.onClick.AddListener(OpenShop);
+            //_openShopButton.onClick.AddListener(OpenShop);
         }
 
-        private void OnItemButtonClicked(string name)
+        private void OnItemButtonClicked(int id)
         {
-            _shopModel.BuyHelper(name);
+            _shopModel.BuyHelper(id);
 
-            UpdateView(name);
+            UpdateView(id);
 
-            _dataIO.SaveData(_inventoryData);
+            Game.Instance.SaveData();
         }
 
-        private void UpdateView(string name)
+        private void UpdateView(int id)
         {
-            foreach (var itemView in _itemViews.Where(itemView => itemView.Name == name))
+            foreach (var itemView in _itemViews.Where(itemView => itemView.ID == id))
             {
-                itemView.UpdateCountText(_inventoryData.GetHelperCount(name));
+                itemView.UpdateCountText(_gameData.GetHelperCount(id));
             }
         }
     }

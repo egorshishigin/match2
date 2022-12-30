@@ -1,6 +1,4 @@
-﻿using GameStatistic;
-using GameStatistic.Controller;
-using GameStatistic.IO;
+﻿using GameStatistic.Controller;
 using GameStatistic.View;
 
 using Items.Config;
@@ -19,7 +17,6 @@ using Helpers.Shop.Model;
 using Helpers.Shop.View;
 using Helpers.Shop.Controller;
 using Helpers.Config;
-using Helpers.Inventory;
 
 using Booster;
 
@@ -87,10 +84,6 @@ public class GameBootstrap : MonoBehaviour
 
     private LevelEventsHandler _levelEventsHandler;
 
-    private GameStatisticData _gameStatistic;
-
-    private GameStatisticIO _gameStatisticIO;
-
     private GameStatisticController _statisticController;
 
     private LevelMenuController _levelMenuController;
@@ -98,10 +91,6 @@ public class GameBootstrap : MonoBehaviour
     private ShopModel _shopModel;
 
     private ShopController _shopController;
-
-    private InventoryData _inventoryData;
-
-    private InventoryDataIO _inventoryDataIO;
 
     private ItemsShaker _itemsShaker;
 
@@ -111,8 +100,6 @@ public class GameBootstrap : MonoBehaviour
     {
         SetApplicationFrameRate();
 
-        LoadGameStatisticData();
-
         CreateItemsSpawner();
 
         CreateLevel();
@@ -121,53 +108,43 @@ public class GameBootstrap : MonoBehaviour
 
         CreateStatisticController();
 
-        CreateItemsShaker();
+        // CreateItemsShaker();
 
-        CreateExtraTimeHelper();
+        //  CreateExtraTimeHelper();
     }
 
     private void CreateItemsShaker()
     {
-        _itemsShaker = new ItemsShaker(_inventoryData, _inventoryDataIO, _itemsShakerView, _shopModel, _itemsShakeForce, _forcePoint, _forceRadius);
+        _itemsShaker = new ItemsShaker(Game.Instance.GameData, _itemsShakerView, _shopModel, _itemsShakeForce, _forcePoint, _forceRadius);
     }
 
     private void CreateExtraTimeHelper()
     {
-        _extraTimeHelper = new ExtraTimeHelper(_inventoryData, _inventoryDataIO, _extraTimeHelperView, _shopModel, _timer, _extraTimeAmount);
+        _extraTimeHelper = new ExtraTimeHelper(Game.Instance.GameData, _extraTimeHelperView, _shopModel, _timer, _extraTimeAmount);
     }
 
     private void CreateShop()
     {
-        _inventoryDataIO = new InventoryDataIO(_config);
 
-        _inventoryData = _inventoryDataIO.LoadData();
+        _shopModel = new ShopModel(Game.Instance.GameData, _config);
 
-        _shopModel = new ShopModel(_inventoryData, _gameStatistic, _config);
-
-        _shopController = new ShopController(_config, _shopItemViewTemplate, _openShopButton, _shopItemsHolder, _shopModel, _inventoryData, _inventoryDataIO);
+        _shopController = new ShopController(_config, _shopItemViewTemplate, _openShopButton, _shopItemsHolder, _shopModel, Game.Instance.GameData);
     }
 
     private void CreateLevel()
     {
-        _levelConfigurator = new LevelConfigurator(_levelPresetsConfig, _gameStatistic, _difficultyFormLevel);
+        _levelConfigurator = new LevelConfigurator(_levelPresetsConfig, Game.Instance.GameData, _difficultyFormLevel);
 
         _level = new LevelModel(_matcherTrigger, _spawner, _levelConfigurator, _timer);
 
-        _levelEventsHandler = new LevelEventsHandler(_level, _gameStatistic, _scoreBooster, _levelMenuView, _playerControl);
+        _levelEventsHandler = new LevelEventsHandler(_level, Game.Instance.GameData, _scoreBooster, _levelMenuView, _playerControl);
 
         _levelMenuController = new LevelMenuController(_levelMenuView, _level, _playerControl);
     }
 
-    private void LoadGameStatisticData()
-    {
-        _gameStatisticIO = new GameStatisticIO();
-
-        _gameStatistic = _gameStatisticIO.LoadData();
-    }
-
     private void CreateStatisticController()
     {
-        _statisticController = new GameStatisticController(_gameStatisticView, _gameStatistic, _level, _gameStatisticIO, _shopModel);
+        _statisticController = new GameStatisticController(_gameStatisticView, Game.Instance.GameData, _level, _shopModel);
     }
 
     private void CreateItemsSpawner()

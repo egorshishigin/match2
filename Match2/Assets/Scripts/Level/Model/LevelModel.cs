@@ -76,7 +76,7 @@ namespace Level.Model
 
         public void PauseGame()
         {
-            _timer.StopTimer();
+            Game.Instance.PauseManager.SetPause(true);
         }
 
         public void ClearItemsObjects()

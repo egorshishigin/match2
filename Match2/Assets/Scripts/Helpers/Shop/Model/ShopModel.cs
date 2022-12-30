@@ -1,43 +1,37 @@
-﻿using GameStatistic;
+﻿using System;
 
 using Helpers.Config;
-using Helpers.Inventory;
-using System;
 
 namespace Helpers.Shop.Model
 {
     public class ShopModel
     {
-        private InventoryData _inventoryData;
-
-        private GameStatisticData _gameStatistic;
+        private GameData _gameData;
 
         private HelpersConfig _config;
 
-        public ShopModel(InventoryData inventoryData, GameStatisticData gameStatistic, HelpersConfig config)
+        public ShopModel(GameData gameData, HelpersConfig config)
         {
-            _inventoryData = inventoryData;
-
-            _gameStatistic = gameStatistic;
+            _gameData = gameData;
 
             _config = config;
         }
 
         public event Action ScoreSpent = delegate { };
 
-        public void BuyHelper(string name)
+        public void BuyHelper(int id)
         {
-            HelperData helperData = _config.GetHelperByName(name);
+            HelperData helperData = _config.GetHelperByID(id);
 
-            if(_gameStatistic.GameScore >= helperData.Price)
+            if (_gameData.GameScore >= helperData.Price)
             {
-                _inventoryData.ChangeHelperCount(name, +1);
+                _gameData.ChangeHelperCount(id, +1);
 
-                _gameStatistic.SpendScore(helperData.Price);
+                _gameData.SpendScore(helperData.Price);
 
                 ScoreSpent.Invoke();
             }
-            
+
         }
     }
 }
