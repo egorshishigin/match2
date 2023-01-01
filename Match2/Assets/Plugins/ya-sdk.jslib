@@ -22,17 +22,10 @@ mergeInto(LibraryManager.library, {
 		}
   },
   
-  SetScrewLB: function(value){
+  SetLB: function(value){
 	  ysdk.getLeaderboards()
   .then(lb => {
-    lb.setLeaderboardScore('Screw', value);
-  });
-  },
-  
-    SetCatchLB: function(value){
-	  ysdk.getLeaderboards()
-  .then(lb => {
-    lb.setLeaderboardScore('Catch', value);
+    lb.setLeaderboardScore('Level', value);
   });
   },
   
@@ -49,7 +42,7 @@ mergeInto(LibraryManager.library, {
 	})  
   },
 
-  RewardedAD: function(){
+  ShopRewarded: function(){
 	  ysdk.adv.showRewardedVideo({
     callbacks: {
         onOpen: () => {
@@ -57,17 +50,48 @@ mergeInto(LibraryManager.library, {
         },
         onRewarded: () => {
           console.log('Rewarded!');
-		  myGameInstance.SendMessage('GameOver', 'GiveNuts');
+		  myGameInstance.SendMessage('Game', 'GiveShopStars');
         },
         onClose: () => {
           console.log('Video ad closed.');
-		  myGameInstance.SendMessage('GameOver', 'ContinuePlay');
         }, 
         onError: (e) => {
           console.log('Error while open video ad:', e);
         }
     }
 })
+  },
+  
+    ExtraStarsRewarded: function(){
+	  ysdk.adv.showRewardedVideo({
+    callbacks: {
+        onOpen: () => {
+          console.log('Video ad open.');
+        },
+        onRewarded: () => {
+          console.log('Rewarded!');
+		  myGameInstance.SendMessage('Game', 'GiveExtraStars');
+        },
+        onClose: () => {
+          console.log('Video ad closed.');
+        }, 
+        onError: (e) => {
+          console.log('Error while open video ad:', e);
+        }
+    }
+})
+  },
+  
+  GetLanguage: function(){
+	var lang = ysdk.environment.i18n.lang;
+	
+	var bufferSize = lengthBytesUTF8(lang) + 1;
+	
+	var buffer = _malloc(bufferSize);
+	
+	stringToUTF8(lang, buffer, bufferSize);
+	
+	return buffer;
   },
 
 });

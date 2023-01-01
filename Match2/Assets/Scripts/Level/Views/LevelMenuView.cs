@@ -31,6 +31,8 @@ namespace Level.View
 
         [SerializeField] private Button _resumeButton;
 
+        [SerializeField] private Button _extraStarsButton;
+
         [SerializeField] private Vector3 _startPosition;
 
         public event Action PauseClicked = delegate { };
@@ -42,6 +44,8 @@ namespace Level.View
         public Button StartGameButton => _startGameButton;
 
         public Button ResumeButton => _resumeButton;
+
+        public Button ExtraStarsButton => _extraStarsButton;
 
         private void Start()
         {
@@ -64,7 +68,7 @@ namespace Level.View
             {
                 ShowElement("Пауза", Vector3.zero);
             }
-            else if (Game.Instance.Language == "en")
+            else
             {
                 ShowElement("Paused", Vector3.zero);
             }
@@ -77,6 +81,8 @@ namespace Level.View
 
             _levelScore.gameObject.SetActive(false);
 
+            _extraStarsButton.gameObject.SetActive(false);
+
             PauseClicked.Invoke();
         }
 
@@ -86,7 +92,7 @@ namespace Level.View
             {
                 ShowElement($"Уровень {level} пройден", Vector3.zero);
             }
-            else if (Game.Instance.Language == "en")
+            else
             {
                 ShowElement($"Level {level} completed", Vector3.zero);
             }
@@ -100,6 +106,8 @@ namespace Level.View
             _pauseButton.gameObject.SetActive(false);
 
             _levelScore.gameObject.SetActive(true);
+
+            _extraStarsButton.gameObject.SetActive(true);
         }
 
         public void ShowLevelScore(string levelScore)
@@ -113,7 +121,7 @@ namespace Level.View
             {
                 ShowElement("Время вышло", Vector3.zero);
             }
-            else if (Game.Instance.Language == "en")
+            else
             {
                 ShowElement("Time is up", Vector3.zero);
             }
@@ -127,6 +135,8 @@ namespace Level.View
             _pauseButton.gameObject.SetActive(false);
 
             _levelScore.gameObject.SetActive(false);
+
+            _extraStarsButton.gameObject.SetActive(false);
         }
 
         public void HideElement()

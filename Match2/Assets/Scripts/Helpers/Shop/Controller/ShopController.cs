@@ -19,7 +19,7 @@ namespace Helpers.Shop.Controller
 
         private Button _openShopButton;
 
-        private Button _getStartButton;
+        private Button _getStarsButton;
 
         private Transform _itemsHolder;
 
@@ -37,7 +37,7 @@ namespace Helpers.Shop.Controller
 
             _openShopButton = openShopButton;
 
-            _getStartButton = getStarsButton;
+            _getStarsButton = getStarsButton;
 
             _itemsHolder = itemsHolder;
 
@@ -65,11 +65,11 @@ namespace Helpers.Shop.Controller
 
             if (Game.Instance.GameData.GameScore < _config.GetHelpersPrice())
             {
-                _getStartButton.gameObject.SetActive(true);
+                _getStarsButton.gameObject.SetActive(true);
             }
             else
             {
-                _getStartButton.gameObject.SetActive(false);
+                _getStarsButton.gameObject.SetActive(false);
             }
         }
 

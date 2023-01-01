@@ -62,6 +62,8 @@ namespace Level.EventsHandler
 
         private void OnLevelLosed()
         {
+            ShowAD();
+
             _playerControl.enabled = false;
 
             _menuView.TimeIsUp();
@@ -82,11 +84,19 @@ namespace Level.EventsHandler
 
             _menuView.ShowLevelScore(_gameData.LevelScore.ToString());
 
-            _gameData.ResetLevelScore();
-
             _menuView.LevelCompleted(_gameData.Level);
 
+            ShowAD();
+
             Game.Instance.SaveData();
+        }
+
+        private void ShowAD()
+        {
+            if (_gameData.Level % 5 == 0)
+            {
+                Game.Instance.ShowAD();
+            }
         }
 
         private void OnScoreUp()

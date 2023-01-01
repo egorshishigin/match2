@@ -13,7 +13,11 @@ namespace GameStatistic.View
 
         [SerializeField] private Button _homeButton;
 
+        [SerializeField] private Button _shopADButton;
+
         public Button HomeButton => _homeButton;
+
+        public Button ShopADButton => _shopADButton;
 
         public void UpdateScoreText(string scoreText)
         {

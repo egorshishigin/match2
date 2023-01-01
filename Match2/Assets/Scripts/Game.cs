@@ -1,4 +1,4 @@
-using System.IO;
+using System.Runtime.InteropServices;
 
 using Newtonsoft.Json;
 
@@ -6,14 +6,36 @@ using Pause;
 
 using Helpers.Config;
 
+using Level.View;
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Game : MonoBehaviour
 {
+    [DllImport("__Internal")]
+    private static extern string GetLanguage();
+
+    [DllImport("__Internal")]
+    private static extern void SaveExtern(string data);
+
+    [DllImport("__Internal")]
+    private static extern void LoadExtern();
+
+    [DllImport("__Internal")]
+    private static extern void ExtraStarsRewarded();
+
+    [DllImport("__Internal")]
+    private static extern void ShopRewarded();
+
+    [DllImport("__Internal")]
+    private static extern void ShowFullScreenAD();
+
     [SerializeField] private HelpersConfig _config;
 
     [SerializeField] private string _language = "ru";
+
+    [SerializeField] private LevelMenuView _levelMenu;
 
     private PauseManager _pauseManager;
 
@@ -40,7 +62,7 @@ public class Game : MonoBehaviour
 
         Initialize();
 
-        LoadData();
+        LoadExtern();
 
         SceneManager.LoadScene(1);
 
@@ -49,6 +71,8 @@ public class Game : MonoBehaviour
 
     private void Initialize()
     {
+        _language = GetLanguage();
+
         _pauseManager = new PauseManager();
     }
 
@@ -56,38 +80,51 @@ public class Game : MonoBehaviour
     {
         string json = JsonConvert.SerializeObject(_gameData);
 
-        Debug.Log($"Save data = {json}");
-
-        File.WriteAllText(Application.persistentDataPath + "/GameData.json", json);
+        SaveExtern(json);
     }
 
-    public void LoadData()
+    public void LoadData(string data)
     {
-        if (File.Exists(Application.persistentDataPath + "/GameData.json"))
-        {
-            string jsonData = File.ReadAllText(Application.persistentDataPath + "/GameData.json");
-
-            if (jsonData.Length == 0)
-            {
-                _gameData = new GameData(0, 0, 0);
-
-                _gameData.Initialize(_config);
-            }
-            else
-            {
-                _gameData = JsonConvert.DeserializeObject<GameData>(jsonData);
-            }
-        }
-        else
+        if(data.Length == 0)
         {
             _gameData = new GameData(0, 0, 0);
 
             _gameData.Initialize(_config);
         }
+        else
+        {
+            _gameData = JsonConvert.DeserializeObject<GameData>(data);
+        }
     }
 
-    public void ShowFullScreenAD()
+    public void ShowAD()
     {
-        Debug.Log("Full screen ad");
+        ShowFullScreenAD();
+    }
+
+    public void PlayShopAD()
+    {
+        ShopRewarded();
+    }
+
+    public void PlayStarsAD()
+    {
+        ExtraStarsRewarded();
+    }
+
+    public void GiveShopStars()
+    {
+        _gameData.GiveScore(_config.GetHelpersPrice());
+
+        SaveData();
+    }
+
+    public void GiveExtraStars()
+    {
+        _gameData.GiveExtraStars();
+
+        _levelMenu.ShowLevelScore(_gameData.GameScore.ToString());
+
+        SaveData();
     }
 }

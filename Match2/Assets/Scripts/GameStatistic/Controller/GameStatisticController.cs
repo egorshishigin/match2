@@ -41,7 +41,11 @@ namespace GameStatistic.Controller
 
             _shopModel.ScoreSpent -= OnScoreSpent;
 
+            Game.Instance.GameData.ShopADWatched -= OnShopADWatched;
+
             _statisticView.HomeButton.onClick.RemoveListener(OnHomeButtonClick);
+
+            _statisticView.ShopADButton.onClick.RemoveListener(ShowShopAD);
         }
 
         private void Initialize()
@@ -54,11 +58,25 @@ namespace GameStatistic.Controller
 
             _shopModel.ScoreSpent += OnScoreSpent;
 
+            Game.Instance.GameData.ShopADWatched += OnShopADWatched;
+
             _statisticView.HomeButton.onClick.AddListener(OnHomeButtonClick);
+
+            _statisticView.ShopADButton.onClick.AddListener(ShowShopAD);
 
             UpdateGameScore();
 
             UpdateLevelText();
+        }
+
+        private void OnShopADWatched()
+        {
+            UpdateGameScore();
+        }
+
+        private void ShowShopAD()
+        {
+            Game.Instance.PlayShopAD();
         }
 
         private void OnScoreSpent()

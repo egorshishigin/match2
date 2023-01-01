@@ -35,20 +35,25 @@ public class GameData
 
     public int GameScore => _gameScore;
 
+    public Dictionary<int, int> Helpers => _helpers;
+
+    public event Action ShopADWatched = delegate { };
+
     public string GetLevelText()
     {
         if (Game.Instance.Language == "ru")
         {
             return string.Format("Уровень {0}", _level);
         }
-        else if (Game.Instance.Language == "en")
+        else
         {
             return string.Format("Level {0}", _level);
         }
-        else
-        {
-            return null;
-        }
+    }
+
+    public void GiveExtraStars()
+    {
+        _gameScore += _score * 2;
     }
 
     public void LevelUp()
@@ -76,7 +81,12 @@ public class GameData
         _gameScore -= amount;
     }
 
-    public Dictionary<int, int> Helpers => _helpers;
+    public void GiveScore(int amount)
+    {
+        _gameScore += amount;
+
+        ShopADWatched.Invoke();
+    }
 
     public void ChangeHelperCount(int id, int count)
     {

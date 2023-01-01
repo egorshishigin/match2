@@ -37,6 +37,8 @@ namespace Level.Controller
             _menuView.PauseClicked -= OnPauseClicked;
 
             _menuView.ResumeButton.onClick.RemoveListener(HideUI);
+
+            _menuView.ExtraStarsButton.onClick.RemoveListener(ExtraStarsHandler);
         }
 
         private void Inizialize()
@@ -50,6 +52,13 @@ namespace Level.Controller
             _menuView.PauseClicked += OnPauseClicked;
 
             _menuView.ResumeButton.onClick.AddListener(HideUI);
+
+            _menuView.ExtraStarsButton.onClick.AddListener(ExtraStarsHandler);
+        }
+
+        private void ExtraStarsHandler()
+        {
+            Game.Instance.PlayStarsAD();
         }
 
         private void OnPauseClicked()

@@ -20,7 +20,7 @@ namespace Localization
             {
                 _text.text = _ruText;
             }
-            else if (Game.Instance.Language == "en")
+            else
             {
                 _text.text = _enText;
             }
