@@ -14,7 +14,9 @@ public class GameData
 
     [SerializeField] private int _gameScore;
 
-    private Dictionary<int, int> _helpers = new Dictionary<int, int>();
+    [SerializeField] private string _inventory;
+
+    [SerializeField] private Dictionary<int, int> _helpers = new Dictionary<int, int>();
 
     public GameData(int level, int score, int gamescore)
     {
@@ -23,6 +25,8 @@ public class GameData
         _score = score;
 
         _gameScore = gamescore;
+
+        _helpers = new Dictionary<int, int>();
     }
 
     public int Level => _level;
@@ -33,7 +37,18 @@ public class GameData
 
     public string GetLevelText()
     {
-        return string.Format("Level {0}", _level);
+        if (Game.Instance.Language == "ru")
+        {
+            return string.Format("Уровень {0}", _level);
+        }
+        else if (Game.Instance.Language == "en")
+        {
+            return string.Format("Level {0}", _level);
+        }
+        else
+        {
+            return null;
+        }
     }
 
     public void LevelUp()
@@ -77,11 +92,11 @@ public class GameData
 
     public void Initialize(HelpersConfig helpersConfig)
     {
-        // to-do: fix data load
+        _helpers = new Dictionary<int, int>();
 
-        //foreach (HelperData helperData in helpersConfig.Helpers)
-        //{
-        //    _helpers.Add(helperData.ID, 0);
-        //}
+        foreach (HelperData helperData in helpersConfig.Helpers)
+        {
+            _helpers.Add(helperData.ID, 0);
+        }
     }
 }

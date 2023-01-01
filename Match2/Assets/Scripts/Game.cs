@@ -1,5 +1,7 @@
 using System.IO;
 
+using Newtonsoft.Json;
+
 using Pause;
 
 using Helpers.Config;
@@ -11,6 +13,8 @@ public class Game : MonoBehaviour
 {
     [SerializeField] private HelpersConfig _config;
 
+    [SerializeField] private string _language = "ru";
+
     private PauseManager _pauseManager;
 
     private GameData _gameData;
@@ -20,6 +24,8 @@ public class Game : MonoBehaviour
     public PauseManager PauseManager => _pauseManager;
 
     public GameData GameData => _gameData;
+
+    public string Language => _language;
 
     private void Awake()
     {
@@ -48,11 +54,11 @@ public class Game : MonoBehaviour
 
     public void SaveData()
     {
-        string jsonData = JsonUtility.ToJson(_gameData);
+        string json = JsonConvert.SerializeObject(_gameData);
 
-        Debug.Log($"Save data = {jsonData}");
+        Debug.Log($"Save data = {json}");
 
-        File.WriteAllText(Application.persistentDataPath + "/GameData.json", jsonData);
+        File.WriteAllText(Application.persistentDataPath + "/GameData.json", json);
     }
 
     public void LoadData()
@@ -69,9 +75,7 @@ public class Game : MonoBehaviour
             }
             else
             {
-                _gameData = JsonUtility.FromJson<GameData>(jsonData);
-
-                _gameData.Initialize(_config);
+                _gameData = JsonConvert.DeserializeObject<GameData>(jsonData);
             }
         }
         else
@@ -80,6 +84,10 @@ public class Game : MonoBehaviour
 
             _gameData.Initialize(_config);
         }
+    }
 
+    public void ShowFullScreenAD()
+    {
+        Debug.Log("Full screen ad");
     }
 }

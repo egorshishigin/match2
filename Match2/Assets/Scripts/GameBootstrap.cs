@@ -62,6 +62,8 @@ public class GameBootstrap : MonoBehaviour
 
     [SerializeField] private Button _openShopButton;
 
+    [SerializeField] private Button _getStarsButton;
+
     [SerializeField] private Transform _shopItemsHolder;
 
     [Header("Helpers")]
@@ -96,6 +98,10 @@ public class GameBootstrap : MonoBehaviour
 
     private ExtraTimeHelper _extraTimeHelper;
 
+    public ItemsSpawner ItemsSpawner => _spawner;
+
+    public LevelModel LevelModel => _level;
+
     private void Start()
     {
         SetApplicationFrameRate();
@@ -108,9 +114,9 @@ public class GameBootstrap : MonoBehaviour
 
         CreateStatisticController();
 
-        // CreateItemsShaker();
+        CreateItemsShaker();
 
-        //  CreateExtraTimeHelper();
+        CreateExtraTimeHelper();
     }
 
     private void CreateItemsShaker()
@@ -128,7 +134,7 @@ public class GameBootstrap : MonoBehaviour
 
         _shopModel = new ShopModel(Game.Instance.GameData, _config);
 
-        _shopController = new ShopController(_config, _shopItemViewTemplate, _openShopButton, _shopItemsHolder, _shopModel, Game.Instance.GameData);
+        _shopController = new ShopController(_config, _shopItemViewTemplate, _openShopButton, _getStarsButton, _shopItemsHolder, _shopModel, Game.Instance.GameData);
     }
 
     private void CreateLevel()

@@ -9,7 +9,9 @@ namespace Helpers.Config
     {
         [SerializeField] private int _id;
 
-        [SerializeField] private string _name;
+        [SerializeField] private string _ru_name;
+
+        [SerializeField] private string _en_name;
 
         [SerializeField] private int _price;
 
@@ -17,7 +19,7 @@ namespace Helpers.Config
 
         public int ID => _id;
 
-        public string Name => _name;
+        public string Name => Game.Instance.Language == "ru" ? _ru_name : _en_name;
 
         public int Price => _price;
 

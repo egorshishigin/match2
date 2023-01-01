@@ -25,11 +25,6 @@ namespace Helpers.Shop.View
 
         public event Action<int> ButtonClicked = delegate { };
 
-        //private void OnEnable()
-        //{
-        //    _itemButton.onClick.AddListener(ButtonClick);
-        //}
-
         private void OnDisable()
         {
             _itemButton.onClick.RemoveListener(ButtonClick);
@@ -56,8 +51,6 @@ namespace Helpers.Shop.View
         private void ButtonClick()
         {
             ButtonClicked.Invoke(_id);
-
-            Debug.Log(_id);
         }
     }
 }

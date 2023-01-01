@@ -18,5 +18,17 @@ namespace Helpers.Config
 
             return helperData;
         }
+
+        public int GetHelpersPrice()
+        {
+            int price = 0;
+
+            foreach (var item in _helperDatas)
+            {
+                price += item.Price;
+            }
+
+            return price;
+        }
     }
 }

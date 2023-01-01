@@ -60,7 +60,14 @@ namespace Level.View
 
         public void ShowGamePauseMenu()
         {
-            ShowElement(_pauseText, Vector3.zero);
+            if (Game.Instance.Language == "ru")
+            {
+                ShowElement("Пауза", Vector3.zero);
+            }
+            else if (Game.Instance.Language == "en")
+            {
+                ShowElement("Paused", Vector3.zero);
+            }
 
             _nextLevelButton.gameObject.SetActive(false);
 
@@ -75,7 +82,14 @@ namespace Level.View
 
         public void LevelCompleted(int level)
         {
-            ShowElement($"Level {level} completed", Vector3.zero);
+            if (Game.Instance.Language == "ru")
+            {
+                ShowElement($"Уровень {level} пройден", Vector3.zero);
+            }
+            else if (Game.Instance.Language == "en")
+            {
+                ShowElement($"Level {level} completed", Vector3.zero);
+            }
 
             _nextLevelButton.gameObject.SetActive(true);
 
@@ -95,7 +109,14 @@ namespace Level.View
 
         public void TimeIsUp()
         {
-            ShowElement(_timeIsUpText, Vector3.zero);
+            if (Game.Instance.Language == "ru")
+            {
+                ShowElement("Время вышло", Vector3.zero);
+            }
+            else if (Game.Instance.Language == "en")
+            {
+                ShowElement("Time is up", Vector3.zero);
+            }
 
             _nextLevelButton.gameObject.SetActive(false);
 
@@ -127,8 +148,6 @@ namespace Level.View
             tween.OnComplete(() =>
             {
                 tween.Kill();
-                
-                Debug.Log("paused");
             });
         }
 

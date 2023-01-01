@@ -19,6 +19,8 @@ namespace Helpers.Shop.Controller
 
         private Button _openShopButton;
 
+        private Button _getStartButton;
+
         private Transform _itemsHolder;
 
         private ShopModel _shopModel;
@@ -27,13 +29,15 @@ namespace Helpers.Shop.Controller
 
         private List<ShopItemView> _itemViews = new List<ShopItemView>();
 
-        public ShopController(HelpersConfig config, ShopItemView itemViewTemplate, Button openShopButton, Transform itemsHolder, ShopModel shopModel, GameData gameData)
+        public ShopController(HelpersConfig config, ShopItemView itemViewTemplate, Button openShopButton, Button getStarsButton, Transform itemsHolder, ShopModel shopModel, GameData gameData)
         {
             _config = config;
 
             _itemViewTemplate = itemViewTemplate;
 
             _openShopButton = openShopButton;
+
+            _getStartButton = getStarsButton;
 
             _itemsHolder = itemsHolder;
 
@@ -58,6 +62,15 @@ namespace Helpers.Shop.Controller
             {
                 UpdateView(itemView.ID);
             }
+
+            if (Game.Instance.GameData.GameScore < _config.GetHelpersPrice())
+            {
+                _getStartButton.gameObject.SetActive(true);
+            }
+            else
+            {
+                _getStartButton.gameObject.SetActive(false);
+            }
         }
 
         private void InitializeViews()
@@ -73,7 +86,7 @@ namespace Helpers.Shop.Controller
                 _itemViews.Add(view);
             }
 
-            //_openShopButton.onClick.AddListener(OpenShop);
+            _openShopButton.onClick.AddListener(OpenShop);
         }
 
         private void OnItemButtonClicked(int id)
