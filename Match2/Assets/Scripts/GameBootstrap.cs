@@ -104,8 +104,6 @@ public class GameBootstrap : MonoBehaviour
 
     private void Start()
     {
-        SetApplicationFrameRate();
-
         CreateItemsSpawner();
 
         CreateLevel();
@@ -156,11 +154,6 @@ public class GameBootstrap : MonoBehaviour
     private void CreateItemsSpawner()
     {
         _spawner = new ItemsSpawner(_itemsConfig);
-    }
-
-    private void SetApplicationFrameRate()
-    {
-        Application.targetFrameRate = 60;
     }
 
     private void OnDrawGizmos()

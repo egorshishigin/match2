@@ -15,6 +15,8 @@ namespace Helpers
 
         [SerializeField] private Button _helperButton;
 
+        [SerializeField] private AudioSource _audio;
+
         public int ID => _id;
 
         public event Action<int> ButtonClicked = delegate { };
@@ -36,6 +38,11 @@ namespace Helpers
 
         private void ButtonClick()
         {
+            if (_count.text != "0")
+            {
+                _audio.PlayOneShot(_audio.clip);
+            }
+
             ButtonClicked.Invoke(_id);
         }
     }

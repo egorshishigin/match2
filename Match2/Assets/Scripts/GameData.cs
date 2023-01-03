@@ -39,6 +39,8 @@ public class GameData
 
     public event Action ShopADWatched = delegate { };
 
+    public event Action<int> ExtraStarsGiven = delegate { };
+
     public string GetLevelText()
     {
         if (Game.Instance.Language == "ru")
@@ -54,6 +56,8 @@ public class GameData
     public void GiveExtraStars()
     {
         _gameScore += _score * 2;
+
+        ExtraStarsGiven.Invoke(_score * 2);
     }
 
     public void LevelUp()
@@ -102,8 +106,6 @@ public class GameData
 
     public void Initialize(HelpersConfig helpersConfig)
     {
-        _helpers = new Dictionary<int, int>();
-
         foreach (HelperData helperData in helpersConfig.Helpers)
         {
             _helpers.Add(helperData.ID, 0);

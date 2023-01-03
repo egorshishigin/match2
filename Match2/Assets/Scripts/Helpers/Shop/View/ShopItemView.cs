@@ -25,7 +25,7 @@ namespace Helpers.Shop.View
 
         public event Action<int> ButtonClicked = delegate { };
 
-        private void OnDisable()
+        private void OnDestroy()
         {
             _itemButton.onClick.RemoveListener(ButtonClick);
         }

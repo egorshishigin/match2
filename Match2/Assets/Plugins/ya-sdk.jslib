@@ -17,7 +17,7 @@ mergeInto(LibraryManager.library, {
 		player.getData().then(_data => {
 		const json = JSON.stringify(_data);
 		console.log(json);
-		myGameInstance.SendMessage('GameStatistic', 'LoadScoreData', json);
+		myGameInstance.SendMessage('Game', 'LoadData', json);
 	});
 		}
   },
@@ -54,6 +54,7 @@ mergeInto(LibraryManager.library, {
         },
         onClose: () => {
           console.log('Video ad closed.');
+		  myGameInstance.SendMessage('AD_fx', 'PlayParticle');
         }, 
         onError: (e) => {
           console.log('Error while open video ad:', e);
@@ -74,6 +75,7 @@ mergeInto(LibraryManager.library, {
         },
         onClose: () => {
           console.log('Video ad closed.');
+		  myGameInstance.SendMessage('AD_fx', 'PlayParticle');
         }, 
         onError: (e) => {
           console.log('Error while open video ad:', e);

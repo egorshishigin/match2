@@ -39,6 +39,8 @@ namespace Level.Controller
             _menuView.ResumeButton.onClick.RemoveListener(HideUI);
 
             _menuView.ExtraStarsButton.onClick.RemoveListener(ExtraStarsHandler);
+
+            Game.Instance.GameData.ExtraStarsGiven -= OnExtraStarsGiven;
         }
 
         private void Inizialize()
@@ -54,6 +56,13 @@ namespace Level.Controller
             _menuView.ResumeButton.onClick.AddListener(HideUI);
 
             _menuView.ExtraStarsButton.onClick.AddListener(ExtraStarsHandler);
+
+            Game.Instance.GameData.ExtraStarsGiven += OnExtraStarsGiven;
+        }
+
+        private void OnExtraStarsGiven(int starsCount)
+        {
+            _menuView.ShowLevelScore(starsCount.ToString());
         }
 
         private void ExtraStarsHandler()

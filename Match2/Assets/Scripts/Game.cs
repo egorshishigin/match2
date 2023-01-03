@@ -6,10 +6,9 @@ using Pause;
 
 using Helpers.Config;
 
-using Level.View;
-
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class Game : MonoBehaviour
 {
@@ -35,7 +34,7 @@ public class Game : MonoBehaviour
 
     [SerializeField] private string _language = "ru";
 
-    [SerializeField] private LevelMenuView _levelMenu;
+    [SerializeField] private float _loadDelay;
 
     private PauseManager _pauseManager;
 
@@ -51,6 +50,8 @@ public class Game : MonoBehaviour
 
     private void Awake()
     {
+        SetApplicationFrameRate();
+
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
@@ -64,7 +65,7 @@ public class Game : MonoBehaviour
 
         LoadExtern();
 
-        SceneManager.LoadScene(1);
+        StartCoroutine(LoadLevel(1));
 
         DontDestroyOnLoad(this);
     }
@@ -85,16 +86,16 @@ public class Game : MonoBehaviour
 
     public void LoadData(string data)
     {
-        if(data.Length == 0)
+        if (data.Length == 0)
         {
             _gameData = new GameData(0, 0, 0);
-
-            _gameData.Initialize(_config);
         }
         else
         {
             _gameData = JsonConvert.DeserializeObject<GameData>(data);
         }
+
+        _gameData.Initialize(_config);
     }
 
     public void ShowAD()
@@ -123,8 +124,18 @@ public class Game : MonoBehaviour
     {
         _gameData.GiveExtraStars();
 
-        _levelMenu.ShowLevelScore(_gameData.GameScore.ToString());
-
         SaveData();
+    }
+
+    private IEnumerator LoadLevel(int id)
+    {
+        yield return new WaitForSeconds(_loadDelay);
+
+        SceneManager.LoadScene(id);
+    }
+
+    private void SetApplicationFrameRate()
+    {
+        Application.targetFrameRate = 60;
     }
 }

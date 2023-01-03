@@ -43,6 +43,8 @@ namespace GameStatistic.Controller
 
             Game.Instance.GameData.ShopADWatched -= OnShopADWatched;
 
+            Game.Instance.GameData.ExtraStarsGiven -= OnExtraStarsGiven;
+
             _statisticView.HomeButton.onClick.RemoveListener(OnHomeButtonClick);
 
             _statisticView.ShopADButton.onClick.RemoveListener(ShowShopAD);
@@ -60,6 +62,8 @@ namespace GameStatistic.Controller
 
             Game.Instance.GameData.ShopADWatched += OnShopADWatched;
 
+            Game.Instance.GameData.ExtraStarsGiven += OnExtraStarsGiven;
+
             _statisticView.HomeButton.onClick.AddListener(OnHomeButtonClick);
 
             _statisticView.ShopADButton.onClick.AddListener(ShowShopAD);
@@ -67,6 +71,11 @@ namespace GameStatistic.Controller
             UpdateGameScore();
 
             UpdateLevelText();
+        }
+
+        private void OnExtraStarsGiven(int starsCount)
+        {
+            _statisticView.UpdateScoreText(starsCount.ToString());
         }
 
         private void OnShopADWatched()

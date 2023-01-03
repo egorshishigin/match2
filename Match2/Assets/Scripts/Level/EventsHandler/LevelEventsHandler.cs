@@ -1,8 +1,7 @@
-﻿using System;
+﻿using System.Runtime.InteropServices;
+using System;
 
 using Booster;
-
-using GameStatistic;
 
 using Level.Model;
 using Level.View;
@@ -13,6 +12,9 @@ namespace Level.EventsHandler
 {
     public class LevelEventsHandler : IDisposable
     {
+        [DllImport("__Internal")]
+        private static extern void SetLB(int value);
+
         private LevelModel _level;
 
         private GameData _gameData;
@@ -89,6 +91,8 @@ namespace Level.EventsHandler
             ShowAD();
 
             Game.Instance.SaveData();
+
+            SetLB(_gameData.Level);
         }
 
         private void ShowAD()
