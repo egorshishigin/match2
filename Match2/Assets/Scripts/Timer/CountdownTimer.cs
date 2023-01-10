@@ -98,7 +98,7 @@ namespace Timer
 
         private void AnimateExtraTimeText(float amount)
         {
-            _extraTimeText.text = $"+ {amount} s";
+            _extraTimeText.text = $"+ {amount}";
 
             Sequence textFade = DOTween.Sequence();
 

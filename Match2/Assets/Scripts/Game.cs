@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Runtime.InteropServices;
 
 using Newtonsoft.Json;
@@ -6,9 +7,10 @@ using Pause;
 
 using Helpers.Config;
 
+using TMPro;
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using System.Collections;
 
 public class Game : MonoBehaviour
 {
@@ -35,6 +37,8 @@ public class Game : MonoBehaviour
     [SerializeField] private string _language = "ru";
 
     [SerializeField] private float _loadDelay;
+
+    [SerializeField] private TMP_InputField _lang;
 
     private PauseManager _pauseManager;
 

@@ -22,6 +22,8 @@ namespace Items.MatcherTrigger
 
         [SerializeField] private float _rotationDuration;
 
+        [SerializeField] private AudioSource _audioSource;
+
         private List<Item> _items = new List<Item>();
 
         private Item _item;
@@ -88,6 +90,8 @@ namespace Items.MatcherTrigger
             else if (_items.Count > 1)
             {
                 ThrowWrongItem(_item.Rigidbody);
+
+                _audioSource.PlayOneShot(_audioSource.clip);
             }
         }
 

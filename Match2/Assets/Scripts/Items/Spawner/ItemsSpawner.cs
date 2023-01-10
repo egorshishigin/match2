@@ -44,6 +44,8 @@ namespace Items.Spawner
                 return;
             }
 
+            Vector3 oldPosition = Vector3.one;
+
             for (int i = 0; i < 2; i++)
             {
                 for (int j = 0; j < _randomItems.Count; j++)
@@ -55,6 +57,16 @@ namespace Items.Spawner
                     float z = Random.Range(-_zSpawnOffset, _zSpawnOffset);
 
                     Vector3 spawnPosition = new Vector3(x, y, z);
+
+                    if(oldPosition == spawnPosition)
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        oldPosition = spawnPosition;
+                    }
+
 
                     GameObject spawnedObject = Object.Instantiate(_randomItems[j].gameObject, spawnPosition, Quaternion.identity);
 

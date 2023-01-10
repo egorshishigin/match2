@@ -16,7 +16,6 @@ mergeInto(LibraryManager.library, {
 		if(player != null){
 		player.getData().then(_data => {
 		const json = JSON.stringify(_data);
-		console.log(json);
 		myGameInstance.SendMessage('Game', 'LoadData', json);
 	});
 		}
