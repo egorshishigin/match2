@@ -4,7 +4,7 @@
 ***
 [Android apk](https://drive.google.com/file/d/1-uKSKTIC6e0HkF0ZIq_F7LgX0BO9sMl0/view?usp=sharing)
 
-[Play online](https://yelloweyesdev.itch.io/food-match)
+[Play online](https://yandex.ru/games/app/209374?utm_source=app_page)
 ***
 
 <div align="center">
