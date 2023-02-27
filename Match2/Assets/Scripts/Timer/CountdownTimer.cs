@@ -10,7 +10,7 @@ using UnityEngine;
 
 namespace Timer
 {
-    public class CountdownTimer : MonoBehaviour, IPuaseHandler
+    public class CountdownTimer : MonoBehaviour, IPauseHandler
     {
         [SerializeField] private TMP_Text _timerText;
 

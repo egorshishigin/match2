@@ -150,6 +150,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: 31
   _rigidbody: {fileID: 8984312550203696674}
+  _dropLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!65 &4633251052786875349
 BoxCollider:
   m_ObjectHideFlags: 0

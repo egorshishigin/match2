@@ -97,8 +97,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.0130447345, y: 0.007304899, z: 0.0054978454}
-  m_Center: {x: 0, y: -0.00090352696, z: 0}
+  m_Size: {x: 0.014291176, y: 0.008986954, z: 0.0067219012}
+  m_Center: {x: 0, y: -0.0009035271, z: 0.0004024004}
 --- !u!54 &2537361094229139635
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -129,3 +129,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: 13
   _rigidbody: {fileID: 2537361094229139635}
+  _dropLayer:
+    serializedVersion: 2
+    m_Bits: 64

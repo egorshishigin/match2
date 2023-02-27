@@ -108,7 +108,8 @@ public class GameData
     {
         foreach (HelperData helperData in helpersConfig.Helpers)
         {
-            _helpers.Add(helperData.ID, 0);
+            _helpers.Add(helperData.ID, 0
+                );
         }
     }
 }

@@ -38,8 +38,6 @@ public class Game : MonoBehaviour
 
     [SerializeField] private float _loadDelay;
 
-    [SerializeField] private TMP_InputField _lang;
-
     private PauseManager _pauseManager;
 
     private GameData _gameData;
@@ -136,6 +134,8 @@ public class Game : MonoBehaviour
         yield return new WaitForSeconds(_loadDelay);
 
         SceneManager.LoadScene(id);
+
+        ShowFullScreenAD();
     }
 
     private void SetApplicationFrameRate()

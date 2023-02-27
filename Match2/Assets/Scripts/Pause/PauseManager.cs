@@ -2,18 +2,18 @@ using System.Collections.Generic;
 
 namespace Pause
 {
-    public class PauseManager : IPuaseHandler
+    public class PauseManager : IPauseHandler
     {
-        private readonly List<IPuaseHandler> _handlers = new List<IPuaseHandler>();
+        private readonly List<IPauseHandler> _handlers = new List<IPauseHandler>();
 
         public bool Paused { get; private set; }
 
-        public void Register(IPuaseHandler handler)
+        public void Register(IPauseHandler handler)
         {
             _handlers.Add(handler);
         }
 
-        public void UnRegister(IPuaseHandler handler)
+        public void UnRegister(IPauseHandler handler)
         {
             _handlers.Remove(handler);
         }

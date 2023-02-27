@@ -410,7 +410,6 @@ MonoBehaviour:
   _config: {fileID: 11400000, guid: 5ca92111eb0b36940b895c3a5ba5935a, type: 2}
   _language: ru
   _loadDelay: 4
-  _lang: {fileID: 0}
 --- !u!4 &678272163
 Transform:
   m_ObjectHideFlags: 0

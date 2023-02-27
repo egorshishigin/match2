@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace PlayerInput
 {
-    public class RigibodyMouseDrag : MonoBehaviour, IPuaseHandler
+    public class RigibodyMouseDrag : MonoBehaviour, IPauseHandler
     {
         [SerializeField] private float _forceAmount = 500;
 

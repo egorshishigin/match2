@@ -773,7 +773,7 @@ GameObject:
   m_Component:
   - component: {fileID: 198320863}
   - component: {fileID: 198320864}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Border_top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2037,6 +2037,15 @@ MonoBehaviour:
       weightedMode: 0
       inWeight: 0
       outWeight: 0
+    - serializedVersion: 3
+      time: 55
+      value: 7
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
@@ -2390,8 +2399,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 637d57cdd7c7ec247aecd6d6f92feb9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ruText: "\u041F\u043E\u0438\u0441\u043A \u043F\u0430\u0440 3D: \u0415\u0434\u0430"
-  _enText: Food Match 3D
+  _ruText: "\u041D\u0430\u0439\u0434\u0438 \u043F\u0430\u0440\u0443 3D: \u0415\u0434\u0430"
+  _enText: 'Find pair 3D: Food'
 --- !u!1 &770407782
 GameObject:
   m_ObjectHideFlags: 0
@@ -3357,7 +3366,7 @@ GameObject:
   m_Component:
   - component: {fileID: 911887405}
   - component: {fileID: 911887406}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Border_front
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3694,7 +3703,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _forceAmount: 500
-  _heightOffset: 2
+  _heightOffset: 1.75
 --- !u!1 &1031484213
 GameObject:
   m_ObjectHideFlags: 0
@@ -9822,7 +9831,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1553647836}
   - component: {fileID: 1553647837}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Border_left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10632,6 +10641,18 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1614748132}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &1761532512
 MonoBehaviour:
@@ -15910,7 +15931,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1940190626}
   - component: {fileID: 1940190627}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Border_right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16513,7 +16534,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2069743843}
   - component: {fileID: 2069743844}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Border_back
   m_TagString: Untagged
   m_Icon: {fileID: 0}

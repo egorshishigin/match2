@@ -134,3 +134,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: 6
   _rigidbody: {fileID: 4626740164862937686}
+  _dropLayer:
+    serializedVersion: 2
+    m_Bits: 64

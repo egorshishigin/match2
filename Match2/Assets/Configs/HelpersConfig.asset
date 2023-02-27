@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _helperDatas:
   - _id: 0
-    _ru_name: "\u0412\u0441\u0442\u0440\u044F\u0445\u043D\u0443\u0442\u044C"
-    _en_name: Items shaker
+    _ru_name: "\u0412\u0435\u043D\u0442\u0438\u043B\u044F\u0442\u043E\u0440"
+    _en_name: Fan
     _price: 25
     _icon: {fileID: 21300000, guid: 23a25c214c6f0474bbfdad3f17c1dc5c, type: 3}
   - _id: 1

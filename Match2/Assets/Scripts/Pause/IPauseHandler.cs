@@ -1,6 +1,6 @@
 namespace Pause
 {
-    public interface IPuaseHandler
+    public interface IPauseHandler
     {
         void SetPause(bool paused);
     }

@@ -32,24 +32,32 @@ MonoBehaviour:
   - _difficulty: 3
     _itemsCount: 15
     _spawnOffsets: {x: 2.6, y: 2, z: 3.2}
-    _levelTime: 42
-  - _difficulty: 3
-    _itemsCount: 15
-    _spawnOffsets: {x: 2.6, y: 2, z: 3.2}
-    _levelTime: 42
+    _levelTime: 67
   - _difficulty: 4
     _itemsCount: 20
     _spawnOffsets: {x: 2.6, y: 2, z: 3.2}
-    _levelTime: 60
+    _levelTime: 85
   - _difficulty: 5
     _itemsCount: 25
     _spawnOffsets: {x: 2.6, y: 2, z: 3.2}
-    _levelTime: 75
+    _levelTime: 130
   - _difficulty: 6
     _itemsCount: 28
     _spawnOffsets: {x: 2.6, y: 2, z: 3.2}
-    _levelTime: 80
+    _levelTime: 160
   - _difficulty: 6
     _itemsCount: 32
     _spawnOffsets: {x: 2.6, y: 2, z: 3.2}
-    _levelTime: 95
+    _levelTime: 190
+  - _difficulty: 7
+    _itemsCount: 34
+    _spawnOffsets: {x: 2.6, y: 2, z: 3.2}
+    _levelTime: 215
+  - _difficulty: 7
+    _itemsCount: 4
+    _spawnOffsets: {x: 2.6, y: 2, z: 3.2}
+    _levelTime: 25
+  - _difficulty: 6
+    _itemsCount: 3
+    _spawnOffsets: {x: 2.6, y: 2, z: 3.2}
+    _levelTime: 10

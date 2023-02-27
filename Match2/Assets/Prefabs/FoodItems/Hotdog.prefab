@@ -65,6 +65,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: 20
   _rigidbody: {fileID: 5105015306935970889}
+  _dropLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!65 &5105015306935970895
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -76,7 +79,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.6959157, y: 0.3007871, z: 1.6207898}
+  m_Size: {x: 0.9851143, y: 0.5240817, z: 1.7246797}
   m_Center: {x: -0.02242589, y: -0.05602652, z: 0.024620175}
 --- !u!1 &7058086274355083082
 GameObject:
